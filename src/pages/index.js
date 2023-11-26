@@ -215,7 +215,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
 
 
   if (user === undefined) {
-    res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
+    res.setHeader("https://deployed-lsoccer.vercel.app", "/login");
     res.statusCode = 302;
     res.end();
     return { props: {} };
