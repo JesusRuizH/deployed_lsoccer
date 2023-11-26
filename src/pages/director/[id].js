@@ -42,7 +42,7 @@ function DirectorPage({ dire }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: dire} = await axios.get('http://localhost:3000/api/director/' + context.query.id)
+    const {data: dire} = await axios.get('https://deployed-lsoccer.vercel.app/api/director/' + context.query.id)
     return {
         props: {
             dire,

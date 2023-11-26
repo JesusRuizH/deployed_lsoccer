@@ -43,7 +43,7 @@ function ContactoPage({ conta }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: conta} = await axios.get('http://localhost:3000/api/contacto/' + context.query.id)
+    const {data: conta} = await axios.get('https://deployed-lsoccer.vercel.app/api/contacto/' + context.query.id)
     return {
         props: {
             conta,

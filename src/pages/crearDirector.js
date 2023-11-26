@@ -38,7 +38,7 @@ export default function Home({user, dires_dep}) {
         </div>
 
         <p className="ml-8 mt-8 mb-2 text-gray-500">Crear Director Deportivo</p>
-        <iframe className="w-full aspect-[5/2]" src="http://localhost:3000/director"></iframe>
+        <iframe className="w-full aspect-[5/2]" src="https://deployed-lsoccer.vercel.app/director"></iframe>
         </>
     )
     
@@ -47,14 +47,14 @@ export default function Home({user, dires_dep}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "/login");
+      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };
     }
 
     const {data: dires_dep} = await axios.get(
-      "http://localhost:3000/api/soloDirectores"
+      "https://deployed-lsoccer.vercel.app/api/soloDirectores"
     )
 
     return {

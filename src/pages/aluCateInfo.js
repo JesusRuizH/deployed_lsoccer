@@ -53,13 +53,13 @@ export default function Home({user, cate}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "/login");
+      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };
     }
     const {data: cate} = await axios.get(
-        "http://localhost:3000/api/catesHorarios"
+        "https://deployed-lsoccer.vercel.app/api/catesHorarios"
         );
 
     return {

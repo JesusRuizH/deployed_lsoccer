@@ -34,7 +34,7 @@ function FirstPage({recibo}) {
 //funcion especial de next para ejecutar una logica antes ded que la pantalla sea devuelta al cliente
 export  const getServerSideProps = async (context)  =>{
   const {data: recibo} = await axios.get(
-    "http://localhost:3000/api/recibo"
+    "https://deployed-lsoccer.vercel.app/api/recibo"
     );
   
   return {

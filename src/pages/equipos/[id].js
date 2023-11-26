@@ -43,7 +43,7 @@ function EquiposPage({ equi }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: equi} = await axios.get('http://localhost:3000/api/equipos/' + context.query.id)
+    const {data: equi} = await axios.get('https://deployed-lsoccer.vercel.app/api/equipos/' + context.query.id)
     return {
         props: {
             equi,

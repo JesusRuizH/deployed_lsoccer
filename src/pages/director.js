@@ -34,7 +34,7 @@ function FirstPage({director}) {
 //funcion especial de next para ejecutar una logica antes ded que la pantalla sea devuelta al cliente
 export  const getServerSideProps = async (context)  =>{
   const {data: director} = await axios.get(
-    "http://localhost:3000/api/director"
+    "https://deployed-lsoccer.vercel.app/api/director"
     );
   
   return {

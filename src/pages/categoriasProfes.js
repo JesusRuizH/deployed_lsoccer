@@ -88,18 +88,18 @@ export default function Home({user, catesProf, categorias}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "/login");
+      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };
     }
 
     const {data: catesProf} = await axios.get(
-        "http://localhost:3000/api/eventos_profes"
+        "https://deployed-lsoccer.vercel.app/api/eventos_profes"
         );
 
     const {data: categorias} = await axios.get(
-        "http://localhost:3000/api/categoria"
+        "https://deployed-lsoccer.vercel.app/api/categoria"
         );
     return {
         props: { catesProf,

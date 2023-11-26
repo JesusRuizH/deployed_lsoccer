@@ -34,7 +34,7 @@ function FirstPage({administracion}) {
 //funcion especial de next para ejecutar una logica antes ded que la pantalla sea devuelta al cliente
 export  const getServerSideProps = async (context)  =>{
   const {data: administracion} = await axios.get(
-    "http://localhost:3000/api/administracion"
+    "https://deployed-lsoccer.vercel.app/api/administracion"
     );
   
   return {

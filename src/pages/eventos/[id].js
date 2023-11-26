@@ -43,7 +43,7 @@ function EventosPage({ eve }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: eve} = await axios.get('http://localhost:3000/api/eventos/' + context.query.id)
+    const {data: eve} = await axios.get('https://deployed-lsoccer.vercel.app/api/eventos/' + context.query.id)
     return {
         props: {
             eve,

@@ -43,7 +43,7 @@ function Cate_asignadasPage({ c_asig }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: c_asig} = await axios.get('http://localhost:3000/api/cate_asignadas/' + context.query.id)
+    const {data: c_asig} = await axios.get('https://deployed-lsoccer.vercel.app/api/cate_asignadas/' + context.query.id)
     return {
         props: {
             c_asig,

@@ -51,7 +51,7 @@ function UsuarioPage({ usu }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: usu} = await axios.get('http://localhost:3000/api/usuario/' + context.query.id)
+    const {data: usu} = await axios.get('https://deployed-lsoccer.vercel.app/api/usuario/' + context.query.id)
     return {
         props: {
            usu,

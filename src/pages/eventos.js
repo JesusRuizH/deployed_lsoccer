@@ -34,7 +34,7 @@ function FirstPage({eventos}) {
 //funcion especial de next para ejecutar una logica antes ded que la pantalla sea devuelta al cliente
 export  const getServerSideProps = async (context)  =>{
   const {data: eventos} = await axios.get(
-    "http://localhost:3000/api/eventos"
+    "https://deployed-lsoccer.vercel.app/api/eventos"
     );
   
   return {

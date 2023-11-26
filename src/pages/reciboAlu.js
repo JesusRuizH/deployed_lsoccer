@@ -42,7 +42,7 @@ export  const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");
 
   const {data: recibo} = await axios.get(
-    "http://localhost:3000/api/recibo"
+    "https://deployed-lsoccer.vercel.app/api/recibo"
     );
   
   if (user === undefined) {

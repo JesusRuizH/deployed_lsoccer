@@ -56,7 +56,7 @@ export default function Home({user, contactos, tipo_cuenta}) {
             </dl>
         </div>
         <p className="ml-8 mt-8 mb-2 text-gray-500">Crear Usuario</p>
-        <iframe className="w-full aspect-[4/3]" src="http://localhost:3000/usuario"></iframe>
+        <iframe className="w-full aspect-[4/3]" src="https://deployed-lsoccer.vercel.app/usuario"></iframe>
         </>
     )
     
@@ -65,17 +65,17 @@ export default function Home({user, contactos, tipo_cuenta}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "/login");
+      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };
     }
 
     const {data: contactos} = await axios.get(
-      "http://localhost:3000/api/contacto"
+      "https://deployed-lsoccer.vercel.app/api/contacto"
     );
     const {data: tipo_cuenta} = await axios.get(
-      "http://localhost:3000/api/tipo_cuenta"
+      "https://deployed-lsoccer.vercel.app/api/tipo_cuenta"
     )
     return {
       props: { tipo_cuenta,

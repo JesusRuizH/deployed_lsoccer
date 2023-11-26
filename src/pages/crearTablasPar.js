@@ -36,7 +36,7 @@ export default function Home({user, cates}) {
             </dl>
         </div>
         <p className="ml-8 mt-8 mb-2 text-gray-500">Crear Eventos</p>
-        <iframe className="w-full aspect-[5/3]" src="http://localhost:3000/tabla_info_partidos"></iframe>
+        <iframe className="w-full aspect-[5/3]" src="https://deployed-lsoccer.vercel.app/tabla_info_partidos"></iframe>
         </>
     )
     
@@ -45,14 +45,14 @@ export default function Home({user, cates}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "/login");
+      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };
     }
 
     const {data: cates} = await axios.get(
-        "http://localhost:3000/api/eventos_profes"
+        "https://deployed-lsoccer.vercel.app/api/eventos_profes"
         );
     
     return {

@@ -44,7 +44,7 @@ export default function Home({user, alumno}) {
             {misPagos()}
         </div>
         <p className="ml-8 mt-8 mb-2 text-gray-500">Crear Nota</p>
-        <iframe className="w-full aspect-[4/2]" src="http://localhost:3000/reciboAlu"></iframe>
+        <iframe className="w-full aspect-[4/2]" src="https://deployed-lsoccer.vercel.app/reciboAlu"></iframe>
         </>
     )
     
@@ -59,7 +59,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
       return { props: {} };
     }
     const {data: alumno} = await axios.get(
-        "http://localhost:3000/api/alumnos_pagos"
+        "https://deployed-lsoccer.vercel.app/api/alumnos_pagos"
         );
 
     return {

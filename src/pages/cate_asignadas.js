@@ -34,7 +34,7 @@ function FirstPage({cate_asignadas}) {
 //funcion especial de next para ejecutar una logica antes ded que la pantalla sea devuelta al cliente
 export  const getServerSideProps = async (context)  =>{
   const {data: cate_asignadas} = await axios.get(
-    "http://localhost:3000/api/cate_asignadas"
+    "https://deployed-lsoccer.vercel.app/api/cate_asignadas"
     );
   
   return {

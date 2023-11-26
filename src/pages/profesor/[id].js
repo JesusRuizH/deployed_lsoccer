@@ -42,7 +42,7 @@ function ProfesorPage({ prof }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: prof} = await axios.get('http://localhost:3000/api/profesor/' + context.query.id)
+    const {data: prof} = await axios.get('https://deployed-lsoccer.vercel.app/api/profesor/' + context.query.id)
     return {
         props: {
             prof,

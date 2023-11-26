@@ -67,7 +67,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
       return { props: {} };
     }
     const {data: tablas} = await axios.get(
-        "http://localhost:3000/api/tabla_info_partidos"
+        "https://deployed-lsoccer.vercel.app/api/tabla_info_partidos"
         );
 
     return {

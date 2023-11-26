@@ -43,7 +43,7 @@ function CategoriaPage({ cate }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: cate} = await axios.get('http://localhost:3000/api/categoria/' + context.query.id)
+    const {data: cate} = await axios.get('https://deployed-lsoccer.vercel.app/api/categoria/' + context.query.id)
     return {
         props: {
             cate,

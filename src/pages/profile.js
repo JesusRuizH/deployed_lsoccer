@@ -135,7 +135,7 @@ function ProfileInfo({user, contact}) {
     }
 
     const {data: contacto} = await axios.get(
-        "http://localhost:3000/api/contacto"
+        "https://deployed-lsoccer.vercel.app/api/contacto"
     );
   
     //console.log(eventos)

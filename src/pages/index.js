@@ -202,20 +202,20 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
   const user = req.session.get("user");
 
   const {data: eventos} = await axios.get(
-    "http://localhost:3000/api/eventos"
+    "https://deployed-lsoccer.vercel.app/api/eventos"
   );
 
   const {data: cate_asignadas} = await axios.get(
-    "http://localhost:3000/api/cate_asignadas"
+    "https://deployed-lsoccer.vercel.app/api/cate_asignadas"
   );
 
   const {data: eventos_profes} = await axios.get(
-    "http://localhost:3000/api/eventos_profes"
+    "https://deployed-lsoccer.vercel.app/api/eventos_profes"
   );
 
 
   if (user === undefined) {
-    res.setHeader("location", "/login");
+    res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
     res.statusCode = 302;
     res.end();
     return { props: {} };

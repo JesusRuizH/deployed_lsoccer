@@ -42,7 +42,7 @@ function AdministracionPage({ admin }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: admin} = await axios.get('http://localhost:3000/api/administracion/' + context.query.id)
+    const {data: admin} = await axios.get('https://deployed-lsoccer.vercel.app/api/administracion/' + context.query.id)
     return {
         props: {
             admin,

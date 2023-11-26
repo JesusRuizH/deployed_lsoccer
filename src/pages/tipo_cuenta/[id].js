@@ -42,7 +42,7 @@ function Tipo_cuentaPage({ tipo_c }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: tipo_c} = await axios.get('http://localhost:3000/api/tipo_cuenta/' + context.query.id)
+    const {data: tipo_c} = await axios.get('https://deployed-lsoccer.vercel.app/api/tipo_cuenta/' + context.query.id)
     return {
         props: {
             tipo_c,

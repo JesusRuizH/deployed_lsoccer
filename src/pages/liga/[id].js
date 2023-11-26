@@ -42,7 +42,7 @@ function LigaPage({ lig }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: lig} = await axios.get('http://localhost:3000/api/liga/' + context.query.id)
+    const {data: lig} = await axios.get('https://deployed-lsoccer.vercel.app/api/liga/' + context.query.id)
     return {
         props: {
             lig,

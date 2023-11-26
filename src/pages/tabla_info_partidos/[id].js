@@ -44,7 +44,7 @@ function Tabla_info_partidosPage({ tabla }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: tabla} = await axios.get('http://localhost:3000/api/tabla_info_partidos/' + context.query.id)
+    const {data: tabla} = await axios.get('https://deployed-lsoccer.vercel.app/api/tabla_info_partidos/' + context.query.id)
     return {
         props: {
             tabla,

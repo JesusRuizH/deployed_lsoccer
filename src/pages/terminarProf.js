@@ -89,7 +89,7 @@ export default function Home({user, alumno, cate, cate_asig}) {
             </dl>
         </div>
         <p className="ml-8 mt-8 mb-2 text-gray-500">Crear Profesor</p>
-        <iframe className="w-full aspect-[4/3]" src="http://localhost:3000/profesor"></iframe>
+        <iframe className="w-full aspect-[4/3]" src="https://deployed-lsoccer.vercel.app/profesor"></iframe>
         </>
     )
     
@@ -104,13 +104,13 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
       return { props: {} };
     }
     const {data: alumno} = await axios.get(
-        "http://localhost:3000/api/soloProfesores"
+        "https://deployed-lsoccer.vercel.app/api/soloProfesores"
         );
     const {data: cate} = await axios.get(
-        "http://localhost:3000/api/categoria"
+        "https://deployed-lsoccer.vercel.app/api/categoria"
         );
     const {data: cate_asig} = await axios.get(
-        "http://localhost:3000/api/cate_asignadas"
+        "https://deployed-lsoccer.vercel.app/api/cate_asignadas"
     );
     
 

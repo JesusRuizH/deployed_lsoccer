@@ -36,7 +36,7 @@ function ReciboPage({ rec }) {
 
 export const getServerSideProps = async (context) => {
 
-    const {data: rec} = await axios.get('http://localhost:3000/api/recibo/' + context.query.id)
+    const {data: rec} = await axios.get('https://deployed-lsoccer.vercel.app/api/recibo/' + context.query.id)
     return {
         props: {
             rec,
