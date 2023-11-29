@@ -16,33 +16,38 @@ export default async function handler(req, res){
 }
 
 const getProfesor = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT * FROM profesor WHERE FK_usuario = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT * FROM profesor WHERE fk_usuario = $1", [id])
+        const profesor = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(profesor[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteProfesor = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from profesor where FK_usuario = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM profesor WHERE fk_usuario = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateProfesor = async (req, res) => {
-    const {id} = req.query
-    const {FK_cate_asignadas} = req.body
-    try {
-        await pool.query('UPDATE profesor SET FK_cate_asignadas = ? WHERE FK_usuario = ?' , [FK_cate_asignadas, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    const { id } = req.query;
+    const {fk_cate_asignadas} = req.body
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE profesor SET fk_cate_asignadas = $1 WHERE fk_usuario = $2', [fk_cate_asignadas, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

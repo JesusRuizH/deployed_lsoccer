@@ -12,12 +12,12 @@ export default function Home({user, cate}) {
                 {
                 cate.map((feature) => (
                     
-                    <div key={feature.PK_categoria} 
+                    <div key={feature.pk_categoria} 
                     className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                         <div className="flex flex-col justify-start p-6"> 
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                                Nº categoria: {feature.PK_categoria} <br />
+                                Nº categoria: {feature.pk_categoria} <br />
                             </div>
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
@@ -44,7 +44,7 @@ export default function Home({user, cate}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
+      res.setHeader("location", "/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };

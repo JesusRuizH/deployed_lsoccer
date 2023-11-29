@@ -16,33 +16,38 @@ export default async function handler(req, res){
 }
 
 const getEquipos = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT * FROM equipos WHERE PK_equipo = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT * FROM equipos WHERE pk_equipo = $1", [id])
+        const equi = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(equi[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteEquipos = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from equipos where PK_equipo = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM equipos WHERE pk_equipo = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateEquipos = async (req, res) => {
-    const {id} = req.query
-    const {nombre_equipo ,posicion_tabla, FK_liga} = req.body
-    try {
-        await pool.query('UPDATE equipos SET nombre_equipo = ? , posicion_tabla = ?, FK_liga = ? WHERE PK_equipo = ?' , [nombre_equipo ,posicion_tabla, FK_liga, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    const { id } = req.query;
+    const {nombre_equipo ,posicion_tabla, fk_liga} = req.body
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE equipos SET nombre_equipo = $1, posicion_tabla = $2, fk_liga = $3 WHERE pk_equipo = $4', [nombre_equipo ,posicion_tabla, fk_liga, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

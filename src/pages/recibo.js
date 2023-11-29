@@ -12,7 +12,7 @@ function FirstPage({recibo}) {
 
     if(recibo.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay nada en recibos todavia :(</h1>
     return recibo.map((rec) => (
-      <ReciboCard rec={rec} key={rec.PK_recibo} />
+      <ReciboCard rec={rec} key={rec.pk_recibo} />
     ));
   }
 

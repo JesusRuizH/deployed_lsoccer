@@ -12,7 +12,7 @@ function FirstPage({administracion}) {
 
     if(administracion.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay usuarios de administracion</h1>
     return administracion.map((admin) => (
-      <AdministracionCard admin={admin} key={admin.FK_usuario} />
+      <AdministracionCard admin={admin} key={admin.fk_usuario} />
     ));
   }
 

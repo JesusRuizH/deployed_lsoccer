@@ -12,12 +12,12 @@ export default function Home({user, alumno, cate}) {
                 {
                 alumno.map((feature) => (
                     
-                    <div key={feature.PK_usuario} 
+                    <div key={feature.pk_usuario} 
                     className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                         <div className="flex flex-col justify-start p-6"> 
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                                Nº Reg: {feature.PK_usuario} <br />
+                                Nº Reg: {feature.pk_usuario} <br />
                             </div>
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
@@ -41,12 +41,12 @@ export default function Home({user, alumno, cate}) {
                 {
                 cate.map((feature) => (
                     
-                    <div key={feature.PK_categoria} 
+                    <div key={feature.pk_categoria} 
                     className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                         <div className="flex flex-col justify-start p-6"> 
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                                Nº categoria: {feature.PK_categoria} <br />
+                                Nº categoria: {feature.pk_categoria} <br />
                             </div>
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">

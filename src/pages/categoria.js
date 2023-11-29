@@ -12,7 +12,7 @@ function FirstPage({categoria}) {
 
     if(categoria.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay categorias aún</h1>
     return categoria.map((cate) => (
-      <CategoriaCard cate={cate} key={cate.PK_categoria} />
+      <CategoriaCard cate={cate} key={cate.pk_categoria} />
     ));
   }
 

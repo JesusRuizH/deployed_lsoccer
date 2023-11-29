@@ -34,12 +34,11 @@ handler.post(async (req, res) => {
   console.log("req.file", req.file.filename);
   console.log("req.body", req.body.data);
   try {
-    const [result] = await pool.query(`UPDATE recibo SET imagen_pago = ? WHERE PK_recibo = ? `, [req.file.filename, req.body.data])
+    const [result] = await pool.query(`UPDATE recibo SET imagen_pago = $1 WHERE pk_recibo = $2 `, [req.file.filename, req.body.data])
     return res.status(200).json({result})
   }catch (error) {
     return res.status(500).json({message: error.message})
-}
-
+  }
 });
 
 export default handler;

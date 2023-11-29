@@ -14,24 +14,31 @@ export default async function handler(req, res){
 }
 
 //funciones
+
 const getEntrenamientos = async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM entrenamientos')
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM entrenamientos');
+        const entrena = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(entrena);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
+
 
 const saveEntrenamientos = async (req, res)=>{
+    const client = await pool.connect();
+    const {fk_categoria ,dias_entrenamiento, horarios_entrena_ini, horarios_entrena_fin} = req.body
     try {
-        const {FK_categoria ,dias_entrenamiento, horarios_entrena_ini, horarios_entrena_fin} = req.body
-
-        const [result] = await pool.query('INSERT INTO entrenamientos SET ?', {FK_categoria ,dias_entrenamiento, horarios_entrena_ini, horarios_entrena_fin})
-        return res.status(200).json({FK_categoria ,dias_entrenamiento, horarios_entrena_ini, horarios_entrena_fin, id: result.insertId})
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+        await client.query(
+        'INSERT INTO entrenamientos (fk_categoria ,dias_entrenamiento, horarios_entrena_ini, horarios_entrena_fin) VALUES ($1, $2, $3, $4)',
+        [fk_categoria ,dias_entrenamiento, horarios_entrena_ini, horarios_entrena_fin]
+        );
+        return res.status(200).json({fk_categoria ,dias_entrenamiento, horarios_entrena_ini, horarios_entrena_fin, id: result.insertId})
+    } catch {
+        return res.status(500).json({ error: error.message });
     }
 }
 

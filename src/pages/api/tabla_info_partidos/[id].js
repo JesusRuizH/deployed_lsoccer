@@ -16,33 +16,38 @@ export default async function handler(req, res){
 }
 
 const getTabla_info_partidos = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT PK_tabla_info_partidos, FK_categoria, DATE_FORMAT(fecha_partido,'%y-%m-%d') AS fecha_partido, incidentes, goles_favor, goles_contra, num_tarjetas_rojas, num_tarjetas_amarillas, resultado, datos_extra, nombre_encargado FROM tabla_info_partidos WHERE PK_tabla_info_partidos = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_tabla_info_partidos, fk_categoria, TO_CHAR(fecha_partido, 'YY-MM-DD') AS fecha_partido, incidentes, goles_favor, goles_contra, num_tarjetas_rojas, num_tarjetas_amarillas, resultado, datos_extra, nombre_encargado FROM tabla_info_partidos WHERE pk_tabla_info_partidos = $1", [id])
+        const tabla = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(tabla[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteTabla_info_partidos = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from tabla_info_partidos where PK_tabla_info_partidos = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM tabla_info_partidos WHERE pk_tabla_info_partidos = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateTabla_info_partidos = async (req, res) => {
-    const {id} = req.query
-    const {FK_categoria ,fecha_partido , incidentes ,goles_favor ,goles_contra , num_tarjetas_rojas ,num_tarjetas_amarillas ,resultado , datos_extra , nombre_encargado } = req.body
-    try {
-        await pool.query('UPDATE tabla_info_partidos SET FK_categoria = ? , fecha_partido = ? , incidentes = ? , goles_favor = ? , goles_contra = ? , num_tarjetas_rojas = ? , num_tarjetas_amarillas = ? , resultado = ? , datos_extra = ? , nombre_encargado = ? WHERE PK_tabla_info_partidos = ?' , [FK_categoria ,fecha_partido , incidentes ,goles_favor ,goles_contra , num_tarjetas_rojas ,num_tarjetas_amarillas ,resultado , datos_extra , nombre_encargado, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    const { id } = req.query;
+    const {fk_categoria ,fecha_partido , incidentes ,goles_favor ,goles_contra , num_tarjetas_rojas ,num_tarjetas_amarillas ,resultado , datos_extra , nombre_encargado } = req.body
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE tabla_info_partidos SET fk_categoria = $1, fecha_partido = $2, incidentes = $3, goles_favor = $4, goles_contra = $5, num_tarjetas_rojas = $6, num_tarjetas_amarillas = $7, resultado = $8, datos_extra = $9, nombre_encargado = $10 WHERE pk_tabla_info_partidos = $11', [fk_categoria ,fecha_partido , incidentes ,goles_favor ,goles_contra , num_tarjetas_rojas ,num_tarjetas_amarillas ,resultado , datos_extra , nombre_encargado, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

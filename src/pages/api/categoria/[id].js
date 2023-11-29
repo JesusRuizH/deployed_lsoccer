@@ -16,33 +16,38 @@ export default async function handler(req, res){
 }
 
 const getCategoria = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT PK_categoria, DATE_FORMAT(fecha_categoria_ini,'%Y-%m-%d') AS fecha_categoria_ini, DATE_FORMAT(fecha_categoria_fin,'%Y-%m-%d') AS fecha_categoria_fin, turno FROM categoria WHERE PK_categoria = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_categoria, TO_CHAR(fecha_categoria_ini, 'YYYY-MM-DD') AS fecha_categoria_ini, TO_CHAR(fecha_categoria_fin, 'YYYY-MM-DD') AS fecha_categoria_fin, turno FROM categoria WHERE pk_categoria = $1", [id])
+        const cate = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(cate[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteCategoria = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from categoria where PK_categoria = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM categoria WHERE pk_categoria = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateCategoria = async (req, res) => {
-    const {id} = req.query
+    const { id } = req.query;
     const {fecha_categoria_ini, fecha_categoria_fin, turno,} = req.body
-    try {
-        await pool.query('UPDATE categoria SET fecha_categoria_ini = ? , fecha_categoria_fin = ? , turno = ? WHERE PK_categoria = ?' , [fecha_categoria_ini, fecha_categoria_fin, turno, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE categoria SET fecha_categoria_ini = $1, fecha_categoria_fin = $2, turno = $3 WHERE pk_categoria = $4', [fecha_categoria_ini, fecha_categoria_fin, turno, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

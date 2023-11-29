@@ -12,7 +12,7 @@ function FirstPage({cate_asignadas}) {
 
     if(cate_asignadas.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay categorias asignadas</h1>
     return cate_asignadas.map((c_asig) => (
-      <Cate_asignadasCard c_asig={c_asig} key={c_asig.PK_cate_asignadas} />
+      <Cate_asignadasCard c_asig={c_asig} key={c_asig.pk_cate_asignadas} />
     ));
   }
 

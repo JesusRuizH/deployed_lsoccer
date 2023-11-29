@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function DirectorForm() {
 
     const [dire, setDirector] = useState({
-        FK_usuario: 0, NSS: "", 
+       fk_usuario: 0, nss: "", 
     })
     const router = useRouter()
     
@@ -53,33 +53,33 @@ export function DirectorForm() {
           
           <div className="mb-4">
           <label
-            htmlFor="FK_usuario"
+            htmlFor="fk_usuario"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_usuario:
+            fk_usuario:
           </label>
           <input
             type="text"
-            name="FK_usuario"
+            name="fk_usuario"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={dire.FK_usuario}
+            value={dire.fk_usuario}
           />
           </div>
 
           <div className="mb-4">
           <label
-            htmlFor="NSS"
+            htmlFor="nss"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            NSS:
+            nss:
           </label>
           <input
             type="text"
-            name="NSS"
+            name="nss"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={dire.NSS}
+            value={dire.nss}
           />
           </div>
 

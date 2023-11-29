@@ -12,7 +12,7 @@ function FirstPage({usuario}) {
 
     if(usuario.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay ningun usuario</h1>
     return usuario.map((usu) => (
-      <UsuarioCard usu={usu} key={usu.PK_usuario} />
+      <UsuarioCard usu={usu} key={usu.pk_usuario} />
     ));
   }
 

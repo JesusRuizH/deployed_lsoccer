@@ -14,24 +14,32 @@ export default async function handler(req, res){
 }
 
 //funciones
+
 const getAlumno = async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM alumno')
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM alumno');
+        const alumnos = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(alumnos);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveAlumno = async (req, res)=>{
-    try {
-        const {FK_usuario, FK_categoria, posicion_jugador, pago_mensual, pago_liga, jersey, KEY_cuenta_pago} = req.body
-
-        const [result] = await pool.query('INSERT INTO alumno SET ?', {FK_usuario, FK_categoria, posicion_jugador, pago_mensual, pago_liga, jersey, KEY_cuenta_pago})
-        return res.status(200).json({FK_usuario, FK_categoria, posicion_jugador, pago_mensual, pago_liga, jersey, KEY_cuenta_pago, id: result.insertId})
+  try {
+      const client = await pool.connect();
+      const {fk_usuario, fk_categoria, posicion_jugador, pago_mensual, pago_liga, jersey, key_cuenta_pago} = req.body
+    
+        const result = await client.query(
+          'INSERT INTO alumno (fk_usuario, fk_categoria, posicion_jugador, pago_mensual, pago_liga, jersey, key_cuenta_pago) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+          [fk_usuario, fk_categoria, posicion_jugador, pago_mensual, pago_liga, jersey, key_cuenta_pago]
+        );
+        return res.status(200).json({fk_usuario, fk_categoria, posicion_jugador, pago_mensual, pago_liga, jersey, key_cuenta_pago, id: result.insertId})
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+      return res.status(500).json({message: error.message})
+  }
 }
+
 

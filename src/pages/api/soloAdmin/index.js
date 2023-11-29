@@ -14,10 +14,12 @@ export default async function handler(req, res){
 //funciones
 const getEventos = async (req, res) => {
     try {
-        const [result] = await pool.query("SELECT PK_usuario, nombre_usuario, apellidos_usuario, DATE_FORMAT(fecha_naci_usuario,'%Y-%m-%d') AS fecha_naci_usuario, correo, estado FROM usuario WHERE (FK_tipo_cuenta = 3)")
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_usuario, nombre_usuario, apellidos_usuario,TO_CHAR(fecha_naci_usuario, 'YYYY-MM-DD') AS fecha_naci_usuario, correo, estado FROM usuario WHERE (fk_tipo_cuenta = 3)");
+        const adm = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(adm);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};

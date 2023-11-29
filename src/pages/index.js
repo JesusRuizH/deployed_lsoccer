@@ -7,22 +7,22 @@ import {Navegador} from "../../components/navegador";
 
 export default function Home({ user , eventos, cate_asignadas, eventos_profes}) {
 
-  if(user.FK_tipo_cuenta === 1){
+  if(user.fk_tipo_cuenta === 1){
     return(
       <Alumno
       usuario = {user} eve = {eventos} categorias = {cate_asignadas} eventos_p = {eventos_profes} />
     )
-  }else if(user.FK_tipo_cuenta === 2){
+  }else if(user.fk_tipo_cuenta === 2){
     return(
       <Director
       usuario = {user} eve = {eventos} categorias = {cate_asignadas} eventos_p = {eventos_profes} />
     )
-  }else if(user.FK_tipo_cuenta === 3){
+  }else if(user.fk_tipo_cuenta === 3){
     return(
       <Administrador
       usuario = {user} eve = {eventos} categorias = {cate_asignadas} eventos_p = {eventos_profes} />
     )
-  }else if(user.FK_tipo_cuenta === 4){
+  }else if(user.fk_tipo_cuenta === 4){
     return(
       <>
       <Profesor
@@ -36,33 +36,33 @@ export default function Home({ user , eventos, cate_asignadas, eventos_profes}) 
 function MainDashboard({event, user, cates, eventos_profes}) {
   let arrEvents = [];
   
-  if(user.FK_tipo_cuenta === 1){
+  if(user.fk_tipo_cuenta === 1){
     function getEvents(){
       let i = 0;
         while(i < event.length){
-          if(event[i].FK_categoria === user.FK_categoria){
+          if(event[i].fk_categoria === user.fk_categoria){
             arrEvents.push(event[i]);
           }
           i++;
         }
     }
     getEvents();
-  }else if(user.FK_tipo_cuenta === 4){
+  }else if(user.fk_tipo_cuenta === 4){
       function getEvents(){
       let i = 0;
       let j = 0;
       while(j <= cates.length)
       {
-        if(user.FK_cate_asignadas === j){
+        if(user.fk_cate_asignadas === j){
           while(i < event.length){
-            if(event[i].FK_categoria === cates[j-1].cate_uno){
+            if(event[i].fk_categoria === cates[j-1].cate_uno){
               
               arrEvents.push(event[i]);
             }
-            if(event[i].FK_categoria === cates[j-1].cate_dos){
+            if(event[i].fk_categoria === cates[j-1].cate_dos){
               arrEvents.push(event[i]);
             }
-            if(event[i].FK_categoria === cates[j-1].cate_tres){
+            if(event[i].fk_categoria === cates[j-1].cate_tres){
               arrEvents.push(event[i]);
             }
             i++;
@@ -72,28 +72,28 @@ function MainDashboard({event, user, cates, eventos_profes}) {
       }
     }
     getEvents();
-  }else if(user.FK_tipo_cuenta === 2 || user.FK_tipo_cuenta === 3){
+  }else if(user.fk_tipo_cuenta === 2 || user.fk_tipo_cuenta === 3){
     arrEvents = event;
   } 
 
-  const getProfes = (FK_categoria) =>{
+  const getProfes = (fk_categoria) =>{
     let i = 0;
     while(i < eventos_profes.length){
-      if(FK_categoria === eventos_profes[i].cate_uno){
+      if(fk_categoria === eventos_profes[i].cate_uno){
         return(
           <>
             <p>{eventos_profes[i].nombre_usuario} {eventos_profes[i].apellidos_usuario}</p>
           </>
         )
       }
-      if(FK_categoria === eventos_profes[i].cate_dos){
+      if(fk_categoria === eventos_profes[i].cate_dos){
         return(
           <>
             <p>{eventos_profes[i].nombre_usuario} {eventos_profes[i].apellidos_usuario}</p>
           </>
         )
       }
-      if(FK_categoria === eventos_profes[i].cate_tres){
+      if(fk_categoria === eventos_profes[i].cate_tres){
         return(
           <>
             <p>{eventos_profes[i].nombre_usuario} {eventos_profes[i].apellidos_usuario}</p>
@@ -116,12 +116,12 @@ function MainDashboard({event, user, cates, eventos_profes}) {
             {
             arrEvents.map((feature) => (
                   
-                  <div key={feature.PK_eventos} 
+                  <div key={feature.pk_eventos} 
                   className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                     <div className="flex flex-col justify-start p-6"> 
                       <div
                       className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                        {getProfes(feature.FK_categoria)}
+                        {getProfes(feature.fk_categoria)}
                       </div>
                       <div className="mb-5 text-base text-neutral-600 dark:text-black">
                         <p>Fecha del evento: {feature.fecha_evento} </p> 
@@ -215,7 +215,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
 
 
   if (user === undefined) {
-    res.setHeader("https://deployed-lsoccer.vercel.app", "/login");
+    res.setHeader("location", "/login");
     res.statusCode = 302;
     res.end();
     return { props: {} };

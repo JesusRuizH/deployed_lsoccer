@@ -18,14 +18,14 @@ function AlumnoPage({ alu }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{alu.KEY_cuenta_pago}</h1> 
-      <h1>{alu.FK_usuario}</h1> 
-      <h1>{alu.FK_categoria}</h1> 
+      <h1>{alu.key_cuenta_pago}</h1> 
+      <h1>{alu.fk_usuario}</h1> 
+      <h1>{alu.fk_categoria}</h1> 
       <h1>{alu.jersey}</h1> 
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(alu.FK_usuario)}
+        onClick={() => handleDelete(alu.fk_usuario)}
       >
 
         Eliminar
@@ -33,7 +33,7 @@ function AlumnoPage({ alu }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/alumno/edit/"+alu.FK_usuario)}
+        onClick={() => router.push("/alumno/edit/"+alu.fk_usuario)}
       >
         Editar
       </button>

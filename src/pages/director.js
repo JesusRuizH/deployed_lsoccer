@@ -12,7 +12,7 @@ function FirstPage({director}) {
 
     if(director.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay directores registrados</h1>
     return director.map((dire) => (
-      <DirectorCard dire={dire} key={dire.FK_usuario} />
+      <DirectorCard dire={dire} key={dire.fk_usuario} />
     ));
   }
 

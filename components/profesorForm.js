@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function ProfesorForm() {
 
     const [prof, setProfesor] = useState({
-        FK_usuario: 0, FK_cate_asignadas: 0,
+      fk_usuario: 0, fk_cate_asignadas: 0,
     })
     const router = useRouter()
     
@@ -53,33 +53,33 @@ export function ProfesorForm() {
           
           <div className="mb-4">
           <label
-            htmlFor="FK_usuario"
+            htmlFor="fk_usuario"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_usuario:
+            fk_usuario:
           </label>
           <input
             type="text"
-            name="FK_usuario"
+            name="fk_usuario"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={prof.FK_usuario}
+            value={prof.fk_usuario}
           />
           </div>
 
           <div className="mb-4">
           <label
-            htmlFor="FK_cate_asignadas"
+            htmlFor="fk_cate_asignadas"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_cate_asignadas:
+            fk_cate_asignadas:
           </label>
           <input
             type="text"
-            name="FK_cate_asignadas"
+            name="fk_cate_asignadas"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={prof.FK_cate_asignadas}
+            value={prof.fk_cate_asignadas}
           />
           </div>
 

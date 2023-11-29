@@ -12,7 +12,7 @@ function FirstPage({profesor}) {
 
     if(profesor.length === 0) return <h1 className="teext-center text-2xl font-bold">No existen profesores asignados</h1>
     return profesor.map((prof) => (
-      <ProfesorCard prof={prof} key={prof.FK_usuario} />
+      <ProfesorCard prof={prof} key={prof.fk_usuario} />
     ));
   }
 

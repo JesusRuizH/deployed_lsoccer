@@ -22,8 +22,8 @@ function UsuarioPage({ usu }) {
       <h1>{usu.apellidos_usuario}</h1> 
       <h1>{usu.fecha_naci_usuario}</h1> 
       <h1>{usu.celular_usuario}</h1> 
-      <h1>{usu.FK_contacto_emergencia}</h1> 
-      <h1>{usu.FK_tipo_cuenta}</h1> 
+      <h1>{usu.fk_contacto_emergencia}</h1> 
+      <h1>{usu.fk_tipo_cuenta}</h1> 
 
       <h1>{usu.usuario}</h1> 
       <h1>{usu.pw}</h1> 
@@ -32,7 +32,7 @@ function UsuarioPage({ usu }) {
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(usu.PK_usuario)}
+        onClick={() => handleDelete(usu.pk_usuario)}
       >
 
         Eliminar
@@ -40,7 +40,7 @@ function UsuarioPage({ usu }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/usuario/edit/"+usu.PK_usuario)}
+        onClick={() => router.push("/usuario/edit/"+usu.pk_usuario)}
       >
         Editar
       </button>

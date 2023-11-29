@@ -10,7 +10,7 @@ function FirstPage({user, recibo}) {
   let recibosAlumnos = []
   let i = 0;
   while(i < recibo.length){
-    if(recibo[i].KEY_cuenta_pago === user.KEY_cuenta_pago){
+    if(recibo[i].key_cuenta_pago === user.key_cuenta_pago){
       recibosAlumnos.push(recibo[i])
     }
     i++
@@ -22,7 +22,7 @@ function FirstPage({user, recibo}) {
 
     if(recibosAlumnos.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay nada en recibos todavia :(</h1>
     return recibosAlumnos.map((rec) => (
-      <ReciboAluCard rec={rec} key={rec.PK_recibo} />
+      <ReciboAluCard rec={rec} key={rec.pk_recibo} />
     ));
   }
 

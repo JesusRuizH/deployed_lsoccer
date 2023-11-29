@@ -12,7 +12,7 @@ function FirstPage({tipo_cuenta}) {
 
     if(tipo_cuenta.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay nada tipo de cuenta todavia :(</h1>
     return tipo_cuenta.map((tipo_c) => (
-      <Tipo_cuentaCard tipo_c={tipo_c} key={tipo_c.PK_tipo_cuenta} />
+      <Tipo_cuentaCard tipo_c={tipo_c} key={tipo_c.pk_tipo_cuenta} />
     ));
   }
 

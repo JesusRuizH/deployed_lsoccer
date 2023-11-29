@@ -12,7 +12,7 @@ function FirstPage({jugadores}) {
 
     if(jugadores.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay jugadores en la lista</h1>
     return jugadores.map((juga) => (
-      <JugadoresCard juga={juga} key={juga.PK_jugadores} />
+      <JugadoresCard juga={juga} key={juga.pk_jugadores} />
     ));
   }
 

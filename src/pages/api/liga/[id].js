@@ -16,33 +16,38 @@ export default async function handler(req, res){
 }
 
 const getLiga = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT PK_liga, nombre_liga, DATE_FORMAT(fecha_categoria_ini,'%y-%m-%d') AS fecha_categoria_ini, DATE_FORMAT(fecha_categoria_fin,'%y-%m-%d') AS fecha_categoria_fin FROM liga WHERE PK_liga = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_liga, nombre_liga, TO_CHAR(fecha_categoria_ini, 'YY-MM-DD') AS fecha_categoria_ini, TO_CHAR(fecha_categoria_fin, 'YY-MM-DD') AS fecha_categoria_fin FROM liga WHERE pk_liga = $1", [id])
+        const lig = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(lig[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteLiga = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from liga where PK_liga = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM liga WHERE pk_liga = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateLiga = async (req, res) => {
-    const {id} = req.query
-    const {nombre_liga, fecha_categoria_ini, fecha_categoria_fin,} = req.body
-    try {
-        await pool.query('UPDATE liga SET nombre_liga = ? , fecha_categoria_ini = ? , fecha_categoria_fin = ? WHERE PK_liga = ?' , [nombre_liga, fecha_categoria_ini, fecha_categoria_fin, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    const { id } = req.query;
+    const {nombre_liga, fecha_categoria_ini, fecha_categoria_fin} = req.body
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE liga SET nombre_liga = $1, fecha_categoria_ini = $2, fecha_categoria_fin = $3 WHERE pk_liga = $4', [nombre_liga, fecha_categoria_ini, fecha_categoria_fin, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

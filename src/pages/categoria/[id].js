@@ -18,13 +18,13 @@ function CategoriaPage({ cate }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{cate.PK_categoria}</h1> 
+      <h1>{cate.pk_categoria}</h1> 
       <h1>{cate.fecha_categoria_ini}</h1> 
       <h1>{cate.turno}</h1> 
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(cate.PK_categoria)}
+        onClick={() => handleDelete(cate.pk_categoria)}
       >
 
         Eliminar
@@ -32,7 +32,7 @@ function CategoriaPage({ cate }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/categoria/edit/"+cate.PK_categoria)}
+        onClick={() => router.push("/categoria/edit/"+cate.pk_categoria)}
       >
         Editar
       </button>

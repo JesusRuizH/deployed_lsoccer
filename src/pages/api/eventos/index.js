@@ -14,24 +14,30 @@ export default async function handler(req, res){
 }
 
 //funciones
+
 const getEventos = async (req, res) => {
     try {
-        const [result] = await pool.query("SELECT PK_eventos, FK_categoria, descripcion_evento, DATE_FORMAT(fecha_evento,'%y-%m-%d') AS fecha_evento, ubicacion_evento FROM eventos_importantes")
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_eventos, fk_categoria, descripcion_evento, TO_CHAR(fecha_evento, 'YY-MM-DD') AS fecha_evento, ubicacion_evento FROM eventos_importantes;");
+        const eve = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(eve);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveEventos = async (req, res)=>{
+    const client = await pool.connect();
+    const {fk_categoria, descripcion_evento, fecha_evento,ubicacion_evento} = req.body
     try {
-        const {FK_categoria, descripcion_evento, fecha_evento,ubicacion_evento} = req.body
-
-        const [result] = await pool.query('INSERT INTO eventos_importantes SET ?', {FK_categoria, descripcion_evento, fecha_evento,ubicacion_evento})
-        return res.status(200).json({FK_categoria, descripcion_evento, fecha_evento,ubicacion_evento, id: result.insertId})
+        const result = await client.query(
+        'INSERT INTO eventos_importantes (fk_categoria, descripcion_evento, fecha_evento, ubicacion_evento) VALUES ($1, $2, $3, $4)',
+        [fk_categoria, descripcion_evento, fecha_evento,ubicacion_evento]
+        );
+        return res.status(200).json({fk_categoria, descripcion_evento, fecha_evento, ubicacion_evento, id: result.insertId})
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
+       
 }
-

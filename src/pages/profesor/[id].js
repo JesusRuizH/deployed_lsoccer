@@ -18,12 +18,12 @@ function ProfesorPage({ prof }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{prof.FK_usuario}</h1> 
+      <h1>{prof.fk_usuario}</h1> 
       <h1>{prof.FK_cate_asignadas}</h1>
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(prof.FK_usuario)}
+        onClick={() => handleDelete(prof.fk_usuario)}
       >
 
         Eliminar
@@ -31,7 +31,7 @@ function ProfesorPage({ prof }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/profesor/edit/"+prof.FK_usuario)}
+        onClick={() => router.push("/profesor/edit/"+prof.fk_usuario)}
       >
         Editar
       </button>

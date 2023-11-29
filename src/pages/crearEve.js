@@ -6,7 +6,7 @@ export default function Home({user, cates}) {
     let i = 0;
     let profe = [];
     while(i < cates.length){
-        if(cates[i].PK_usuario == user.PK_usuario){
+        if(cates[i].pk_usuario == user.pk_usuario){
             profe = cates[i];
         }
         i++;
@@ -18,7 +18,7 @@ export default function Home({user, cates}) {
         <p className="ml-8 mt-8 mb-2 text-gray-500">Mis Categorias</p>
         <div>
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-1 lg:gap-y-16 pt-3">
-                    <div key={profe.PK_usuario} 
+                    <div key={profe.pk_usuario} 
                     className="text-center flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                         <div className="flex flex-col justify-start p-6"> 
                             <div
@@ -45,7 +45,7 @@ export default function Home({user, cates}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
+      res.setHeader("location", "/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };

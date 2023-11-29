@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function UsuarioForm() {
 
     const [usu, setUsuario] = useState({
-      nombre_usuario: "", apellidos_usuario: "", fecha_naci_usuario: "", celular_usuario: "", FK_contacto_emergencia: "", FK_tipo_cuenta: "", usuario: "",pw: "", correo: "", estado: 0,
+      nombre_usuario: "", apellidos_usuario: "", fecha_naci_usuario: "", celular_usuario: "", fk_contacto_emergencia: "", fk_tipo_cuenta: "", usuario: "",pw: "", correo: "", estado: 0,
     })
     const router = useRouter()
     
@@ -117,33 +117,33 @@ export function UsuarioForm() {
 
           <div className="mb-4">
           <label
-            htmlFor="FK_contacto_emergencia"
+            htmlFor="fk_contacto_emergencia"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_contacto_emergencia:
+            fk_contacto_emergencia:
           </label>
           <input
             type="text"
-            name="FK_contacto_emergencia"
+            name="fk_contacto_emergencia"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={usu.FK_contacto_emergencia}
+            value={usu.fk_contacto_emergencia}
           />
           </div>
 
           <div className="mb-4">
           <label
-            htmlFor="FK_tipo_cuenta"
+            htmlFor="fk_tipo_cuenta"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_tipo_cuenta:
+            fk_tipo_cuenta:
           </label>
           <input
             type="text"
-            name="FK_tipo_cuenta"
+            name="fk_tipo_cuenta"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={usu.FK_tipo_cuenta}
+            value={usu.fk_tipo_cuenta}
           />
           </div>
 

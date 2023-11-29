@@ -12,7 +12,7 @@ function FirstPage({equipos}) {
 
     if(equipos.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay equipos aun</h1>
     return equipos.map((equi) => (
-      <EquiposCard equi={equi} key={equi.PK_equipo} />
+      <EquiposCard equi={equi} key={equi.pk_equipo} />
     ));
   }
 

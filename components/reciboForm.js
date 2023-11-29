@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function ReciboForm() {
 
     const [rec, setRecibo] = useState({
-        KEY_cuenta_pago: 0 ,monto_pagado: 0, imagen_pago: "", fecha_pago: "", observaciones: "", validacion: 0,
+        key_cuenta_pago: 0 ,monto_pagado: 0, imagen_pago: "", fecha_pago: "", observaciones: "", validacion: 0,
     })
     const router = useRouter()
     
@@ -53,17 +53,17 @@ export function ReciboForm() {
           
           <div className="mb-4">
           <label
-            htmlFor="KEY_cuenta_pago"
+            htmlFor="key_cuenta_pago"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            KEY_cuenta_pago:
+            key_cuenta_pago:
           </label>
           <input
             type="text"
-            name="KEY_cuenta_pago"
+            name="key_cuenta_pago"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={rec.KEY_cuenta_pago}
+            value={rec.key_cuenta_pago}
           />
           </div>
 

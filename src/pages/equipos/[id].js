@@ -18,13 +18,13 @@ function EquiposPage({ equi }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{equi.PK_equipo}</h1> 
+      <h1>{equi.pk_equipo}</h1> 
       <h1>{equi.nombre_equipo}</h1> 
       <h1>{equi.posicion_tabla}</h1> 
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(equi.PK_equipo)}
+        onClick={() => handleDelete(equi.pk_equipo)}
       >
 
         Eliminar
@@ -32,7 +32,7 @@ function EquiposPage({ equi }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/equipos/edit/"+equi.PK_equipo)}
+        onClick={() => router.push("/equipos/edit/"+equi.pk_equipo)}
       >
         Editar
       </button>

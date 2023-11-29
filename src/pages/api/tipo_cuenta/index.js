@@ -14,24 +14,30 @@ export default async function handler(req, res){
 }
 
 //funciones
+
 const getTipo_cuenta = async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM tipo_cuenta')
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM tipo_cuenta');
+        const tipo_cu = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(tipo_cu);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveTipo_cuenta = async (req, res)=>{
+    const client = await pool.connect();
+    const {tipo} = req.body
     try {
-        const {tipo,} = req.body
-
-        const [result] = await pool.query('INSERT INTO tipo_cuenta SET ?', {tipo})
+        const result = await client.query(
+        'INSERT INTO tipo_cuenta (tipo) VALUES ($1)',
+        [tipo]
+        );
         return res.status(200).json({tipo, id: result.insertId})
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
+       
 }
-

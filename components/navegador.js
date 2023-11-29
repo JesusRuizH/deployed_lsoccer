@@ -19,7 +19,7 @@ import { ArrowPathIcon, CloudArrowUpIcon, FingerPrintIcon, LockClosedIcon } from
 export function Navegador({user}) {
   let nav = [];
   const navegador = () =>{
-    if(user.FK_tipo_cuenta === 1){
+    if(user.fk_tipo_cuenta === 1){
       const navigation = [
         { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
         { name: 'Pagos', href: 'http://localhost:3000/pagosAlu', current: false },
@@ -28,7 +28,7 @@ export function Navegador({user}) {
       ]
       nav = navigation;
 
-    }else if(user.FK_tipo_cuenta === 2){
+    }else if(user.fk_tipo_cuenta === 2){
       const navigation = [
         { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
         { name: 'Entrenamientos', href: 'http://localhost:3000/crearEntrena', current: false },
@@ -37,13 +37,13 @@ export function Navegador({user}) {
         { name: 'Jugadores de Ligas', href: 'http://localhost:3000/crearJugaLigas', current: false },
       ]
       nav = navigation;
-    }else if(user.FK_tipo_cuenta === 3){
+    }else if(user.fk_tipo_cuenta === 3){
       const navigation = [
         { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
         { name: 'Crear Nota', href: 'http://localhost:3000/crearNota', current: false },
       ]
       nav = navigation;
-    }else if(user.FK_tipo_cuenta === 4){
+    }else if(user.fk_tipo_cuenta === 4){
       const navigation = [
         { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
         { name: 'Eventos', href: 'http://localhost:3000/crearEve', current: false },
@@ -57,7 +57,7 @@ export function Navegador({user}) {
   navegador();
 
   const crearUsuarios = () =>{
-    if(user.FK_tipo_cuenta === 3){
+    if(user.fk_tipo_cuenta === 3){
       return(
         <>
          <Menu as="div" className="relative ml-3">
@@ -140,7 +140,7 @@ export function Navegador({user}) {
   }
 
   const terminarUsuarios = () =>{
-    if(user.FK_tipo_cuenta === 2){
+    if(user.fk_tipo_cuenta === 2){
       return(
         <>
          <Menu as="div" className="relative ml-3">

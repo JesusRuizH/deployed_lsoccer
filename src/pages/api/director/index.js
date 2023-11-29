@@ -16,22 +16,28 @@ export default async function handler(req, res){
 //funciones
 const getDirector = async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM director_deportivo')
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM director_deportivo');
+        const dire = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(dire);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveDirector = async (req, res)=>{
+
+    const client = await pool.connect();
+    const {fk_usuario, nss,} = req.body
     try {
-        const {FK_usuario, NSS} = req.body
-
-        const [result] = await pool.query('INSERT INTO director_deportivo SET ?', {FK_usuario, NSS})
-        return res.status(200).json({FK_usuario, NSS, id: result.insertId})
+        const result = await client.query(
+        'INSERT INTO director_deportivo (fk_usuario, nss) VALUES ($1, $2)',
+        [fk_usuario, nss]
+        );
+        return res.status(200).json({fk_usuario, nss, id: result.insertId})
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
 
+}

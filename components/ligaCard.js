@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export function LigaCard({lig}) {
   return (
-    <Link legacyBehavior href={`/liga/${lig.PK_liga}`} key={lig.PK_liga}>
+    <Link legacyBehavior href={`/liga/${lig.pk_liga}`} key={lig.pk_liga}>
     <a>
         <div className="border border-gray-200 shadow-md p-6">
         <h3><p id="layoutTxt">Nombre de la liga: </p>{lig.nombre_liga} </h3>

@@ -18,12 +18,12 @@ function DirectorPage({ dire }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{dire.FK_usuario}</h1> 
-      <h1>{dire.NSS}</h1> 
+      <h1>{dire.fk_usuario}</h1> 
+      <h1>{dire.nss}</h1> 
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(dire.FK_usuario)}
+        onClick={() => handleDelete(dire.fk_usuario)}
       >
 
         Eliminar
@@ -31,7 +31,7 @@ function DirectorPage({ dire }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/director/edit/"+dire.FK_usuario)}
+        onClick={() => router.push("/director/edit/"+dire.fk_usuario)}
       >
         Editar
       </button>

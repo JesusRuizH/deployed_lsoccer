@@ -12,7 +12,7 @@ function FirstPage({tabla_info}) {
 
     if(tabla_info.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay ninguna tabla todavia :(</h1>
     return tabla_info.map((tabla) => (
-      <Tabla_info_partidosCard tabla={tabla} key={tabla.PK_tabla_info_partidos} />
+      <Tabla_info_partidosCard tabla={tabla} key={tabla.pk_tabla_info_partidos} />
     ));
   }
 

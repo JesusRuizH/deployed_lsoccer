@@ -23,32 +23,32 @@ function ProfileInfo({user, contact}) {
       }
 
       const cate_alumno = () => {
-        if(user.FK_tipo_cuenta === 1){
+        if(user.fk_tipo_cuenta === 1){
             return (
             <>
-                <p className="font-bold text-gray-700 text-xl">{user.FK_categoria}</p>
+                <p className="font-bold text-gray-700 text-xl">{user.fk_categoria}</p>
                 <p className="text-gray-400">Categoria</p>
             </>)
         } 
       }
 
       const tipo_perfil = () => {
-        if(user.FK_tipo_cuenta === 1){
+        if(user.fk_tipo_cuenta === 1){
             return (
             <>
                 <p className="mt-8 text-gray-500">Cuenta de Alumno</p>
             </>)
-        }else if(user.FK_tipo_cuenta === 2){
+        }else if(user.fk_tipo_cuenta === 2){
           return (
             <>
                 <p className="mt-8 text-gray-500">Cuenta de Director Deportivo</p>
             </>)
-        }else if(user.FK_tipo_cuenta === 3){
+        }else if(user.fk_tipo_cuenta === 3){
           return (
             <>
                 <p className="mt-8 text-gray-500">Cuenta de Administrador</p>
             </>)
-        }else if(user.FK_tipo_cuenta === 4){
+        }else if(user.fk_tipo_cuenta === 4){
           return (
             <>
                 <p className="mt-8 text-gray-500">Cuenta de Entrenador</p>
@@ -63,7 +63,7 @@ function ProfileInfo({user, contact}) {
         <div className="grid grid-cols-1 md:grid-cols-3">
             <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
             <div>
-                <p className="font-bold text-gray-700 text-xl">#{user.PK_usuario}</p>
+                <p className="font-bold text-gray-700 text-xl">#{user.pk_usuario}</p>
                 <p className="text-gray-400">Numero de Registro</p>
             </div>
             <div>
@@ -104,7 +104,7 @@ function ProfileInfo({user, contact}) {
     function getEvents(){
     let i = 0;
     while(i < contacto.length){
-      if(contacto[i].PK_contacto_emergencia === usuario.FK_contacto_emergencia){
+      if(contacto[i].pk_contacto_emergencia === usuario.fk_contacto_emergencia){
         contacto_eme = contacto[i];
       }
       i++;

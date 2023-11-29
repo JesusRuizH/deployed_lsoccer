@@ -21,7 +21,7 @@ export function ContactoForm() {
                 await axios.post('/api/contacto', conta)
                 toast.success('contacto Creado Correctamente')
             }
-            router.push('/contacto')
+            router.push('http://localhost:3000/contacto')
         } catch (error) {
             
             toast.error(error.response.data.message)

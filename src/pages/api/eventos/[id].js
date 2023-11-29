@@ -14,35 +14,39 @@ export default async function handler(req, res){
     }
     
 }
-
 const getEventos = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT PK_eventos, FK_categoria, descripcion_evento, DATE_FORMAT(fecha_evento,'%y-%m-%d') AS fecha_evento, ubicacion_evento FROM eventos_importantes WHERE PK_eventos = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_eventos, fk_categoria, descripcion_evento, TO_CHAR(fecha_evento, 'YY-MM-DD') AS fecha_evento, ubicacion_evento FROM eventos_importantes WHERE pk_eventos = $1", [id])
+        const eve = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(eve[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteEventos = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from eventos_importantes where PK_eventos = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM eventos_importantes WHERE pk_eventos = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateEventos = async (req, res) => {
-    const {id} = req.query
-    const {FK_categoria, descripcion_evento, fecha_evento,ubicacion_evento} = req.body
-    try {
-        await pool.query('UPDATE eventos_importantes SET FK_categoria = ? , descripcion_evento = ? , fecha_evento = ?, ubicacion_evento = ? WHERE PK_eventos = ?' , [FK_categoria, descripcion_evento, fecha_evento,ubicacion_evento, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    const { id } = req.query;
+    const {fk_categoria, descripcion_evento, fecha_evento, ubicacion_evento} = req.body
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE eventos_importantes SET fk_categoria = $1, descripcion_evento = $2, fecha_evento = $3, ubicacion_evento = $4 WHERE pk_eventos = $5', [fk_categoria, descripcion_evento, fecha_evento,ubicacion_evento, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

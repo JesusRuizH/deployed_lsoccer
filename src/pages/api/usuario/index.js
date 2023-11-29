@@ -15,28 +15,18 @@ export default async function handler(req, res){
 }
 
 //funciones
-const getUsuario = async (req, res) => {
-    try {
-        const [result] = await pool.query("SELECT PK_usuario, nombre_usuario, apellidos_usuario, DATE_FORMAT(fecha_naci_usuario,'%y-%m-%d') AS fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario, LEFT(pw , 10) AS pw, correo, estado FROM usuario")
-        //console.log(result);
-        return res.status(200).json(result)
-    } catch (error) {
-        return res.status(500).json({error});
-    }
-}
-
 
 const creandoUsuario_pass = async (req,res) =>{
     try {
         
-        var {nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario , pw, correo, estado,} = req.body
+        var {nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, fk_contacto_emergencia, fk_tipo_cuenta, usuario , pw, correo, estado} = req.body
         
         const saltRounds = 1;
         var hashedPassword;
         bcrypt.hash(pw, saltRounds)
                 .then(hash => {
                     pw = hash
-                    saveUsuario(nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario , pw, correo, estado, req,res)
+                    saveUsuario(nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, fk_contacto_emergencia, fk_tipo_cuenta, usuario , pw, correo, estado, req,res)
                     //console.log('Hash ', pw)
                 })
                 .catch(err => console.error(err.message))
@@ -45,12 +35,28 @@ const creandoUsuario_pass = async (req,res) =>{
     }
 }
 
-const saveUsuario = async (nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario , pw, correo, estado, req, res)=>{
+const getUsuario = async (req, res) => {
     try {
-        const [result] = await pool.query('INSERT INTO usuario SET ?', {nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario , pw, correo, estado})
-        return res.status(200).json({nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario , pw, correo, estado, id: result.insertId})
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_usuario, nombre_usuario, apellidos_usuario, TO_CHAR(fecha_naci_usuario, 'YY-MM-DD') AS fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario, LEFT(pw , 10) AS pw, correo, estado FROM usuario");
+        const usu = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(usu);
+        
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    } 
+};
+
+const saveUsuario = async (nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, fk_contacto_emergencia, fk_tipo_cuenta, usuario , pw, correo, estado, req, res)=>{
+    const client = await pool.connect();
+    try {
+        const result = await client.query(
+        'INSERT INTO usuario (nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, fk_contacto_emergencia, fk_tipo_cuenta, usuario , pw, correo, estado) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+        [nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, fk_contacto_emergencia, fk_tipo_cuenta, usuario , pw, correo, estado]
+        );
+        return res.status(200).json({nombre_usuario, apellidos_usuario, fecha_naci_usuario, celular_usuario, fk_contacto_emergencia, fk_tipo_cuenta, usuario , pw, correo, estado, id: result.insertId})
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
+       
 }
-

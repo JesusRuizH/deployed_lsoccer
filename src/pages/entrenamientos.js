@@ -12,7 +12,7 @@ function FirstPage({entrenamientos}) {
 
     if(entrenamientos.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay entrenamientos creados</h1>
     return entrenamientos.map((entr) => (
-      <EntrenamientosCard entr={entr} key={entr.PK_entrenamientos} />
+      <EntrenamientosCard entr={entr} key={entr.pk_entrenamientos} />
     ));
   }
 

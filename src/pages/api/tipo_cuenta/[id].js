@@ -16,33 +16,38 @@ export default async function handler(req, res){
 }
 
 const getTipo_cuenta = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT * FROM tipo_cuenta WHERE PK_tipo_cuenta = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT * FROM tipo_cuenta WHERE pk_tipo_cuenta = $1", [id])
+        const cuenta = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(cuenta[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteTipo_cuenta = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from tipo_cuenta where PK_tipo_cuenta = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM tipo_cuenta WHERE pk_tipo_cuenta = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateTipo_cuenta = async (req, res) => {
-    const {id} = req.query
+    const { id } = req.query;
     const {tipo} = req.body
-    try {
-        await pool.query('UPDATE tipo_cuenta SET tipo = ? WHERE PK_tipo_cuenta = ?' , [tipo, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE tipo_cuenta SET tipo = $1 WHERE pk_tipo_cuenta = $2', [tipo, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function Tabla_info_partidosForm() {
 
     const [tabla, setTabla_info_partidos] = useState({
-        FK_categoria: 0,fecha_partido: "", incidentes: "",goles_favor: 0,goles_contra: 0, num_tarjetas_rojas: 0,num_tarjetas_amarillas: 0,resultado: 0, datos_extra: "", nombre_encargado: "",
+        fk_categoria: 0,fecha_partido: "", incidentes: "",goles_favor: 0,goles_contra: 0, num_tarjetas_rojas: 0,num_tarjetas_amarillas: 0,resultado: 0, datos_extra: "", nombre_encargado: "",
     })
     const router = useRouter()
     
@@ -53,17 +53,17 @@ export function Tabla_info_partidosForm() {
           
           <div className="mb-4">
           <label
-            htmlFor="FK_categoria"
+            htmlFor="fk_categoria"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
             Folio de categoria a la que pertenece la tabla:
           </label>
           <input
             type="text"
-            name="FK_categoria"
+            name="fk_categoria"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={tabla.FK_categoria}
+            value={tabla.fk_categoria}
           />
           </div>
           

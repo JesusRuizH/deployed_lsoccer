@@ -24,7 +24,7 @@ function EventosPage({ eve }) {
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(eve.PK_eventos)}
+        onClick={() => handleDelete(eve.pk_eventos)}
       >
 
         Eliminar
@@ -32,7 +32,7 @@ function EventosPage({ eve }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/eventos/edit/"+eve.PK_eventos)}
+        onClick={() => router.push("/eventos/edit/"+eve.pk_eventos)}
       >
         Editar
       </button>

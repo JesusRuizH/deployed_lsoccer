@@ -16,22 +16,26 @@ export default async function handler(req, res){
 //funciones
 const getCate_asignadas = async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM cate_asignadas')
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM cate_asignadas');
+        const cates_asignadas = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(cates_asignadas);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveCate_asignadas = async (req, res)=>{
+    const client = await pool.connect();
+    const {cate_uno, cate_dos, cate_tres} = req.body
     try {
-        const {cate_uno, cate_dos, cate_tres,} = req.body
-
-        const [result] = await pool.query('INSERT INTO cate_asignadas SET ?', {cate_uno, cate_dos, cate_tres})
-        return res.status(200).json({cate_uno, cate_dos, cate_tres, id: result.insertId})
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+      const result = await client.query(
+        'INSERT INTO cate_asignadas (cate_uno, cate_dos, cate_tres) VALUES ($1, $2, $3)',
+        [cate_uno, cate_dos, cate_tres]
+      );
+      return res.status(200).json({cate_uno, cate_dos, cate_tres, id: result.insertId})
+    }catch (error) {
+      return res.status(500).json({message: error.message})
     }
-}
-
+  }

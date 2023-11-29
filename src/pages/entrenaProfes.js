@@ -93,7 +93,7 @@ export default function Home({user, catesProf, categorias}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
+      res.setHeader("location", "/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };

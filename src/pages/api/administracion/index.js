@@ -2,36 +2,43 @@ import { pool } from '../../../../config/db'
 
 export default async function handler(req, res){
 
-    switch(req.method){
-        //si la llamada a la pagina es GET va a listar todos los productos
-        case 'GET': 
-            return await getAdministracion(req, res);
-        //si ees POST va a guardar el producto
-        case 'POST':
-            return await saveAdministracion(req,res)
-    }
+  switch(req.method){
+      //si la llamada a la pagina es GET va a listar todos los productos
+      case 'GET': 
+          return await getAdministracion(req, res);
+      //si ees POST va a guardar el producto
+      case 'POST':
+          return await saveAdministracion(req,res)
+  }
     
 }
 
 //funciones
 const getAdministracion = async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM administracion')
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM administracion');
+        const administracion = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(administracion);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveAdministracion = async (req, res)=>{
+   
+    const client = await pool.connect();
+    const {fk_usuario, nss,} = req.body
     try {
-        const {FK_usuario, NSS,} = req.body
-
-        const [result] = await pool.query('INSERT INTO administracion SET ?', {FK_usuario, NSS})
-        return res.status(200).json({FK_usuario, NSS, id: result.insertId})
+      const result = await client.query(
+        'INSERT INTO administracion (fk_usuario, nss) VALUES ($1, $2)',
+        [fk_usuario, nss]
+      );
+      return res.status(200).json({fk_usuario, nss, id: result.insertId})
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+      return res.status(500).json({message: error.message})
+  }
+
 }
 

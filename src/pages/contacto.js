@@ -12,7 +12,7 @@ function FirstPage({contacto}) {
 
     if(contacto.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay contactos aún</h1>
     return contacto.map((conta) => (
-      <ContactoCard conta={conta} key={conta.PK_contacto_emergencia} />
+      <ContactoCard conta={conta} key={conta.pk_contacto_emergencia} />
     ));
   }
 

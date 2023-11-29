@@ -12,7 +12,7 @@ function FirstPage({alumno}) {
 
     if(alumno.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay alumnos aún</h1>
     return alumno.map((alu) => (
-      <AlumnoCard alu={alu} key={alu.FK_usuario} />
+      <AlumnoCard alu={alu} key={alu.fk_usuario} />
     ));
   }
 

@@ -18,14 +18,14 @@ function ReciboPage({ rec }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{rec.PK_recibo}</h1> 
-      <h1>{rec.KEY_cuenta_pago}</h1> 
+      <h1>{rec.pk_recibo}</h1> 
+      <h1>{rec.key_cuenta_pago}</h1> 
       <h1>{rec.fecha_pago}</h1> 
       <h1>{rec.validacion}</h1> 
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(rec.PK_recibo)}
+        onClick={() => handleDelete(rec.pk_recibo)}
       >
 
         Eliminar
@@ -33,7 +33,7 @@ function ReciboPage({ rec }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/recibo/edit/"+ rec.PK_recibo)}
+        onClick={() => router.push("/recibo/edit/"+ rec.pk_recibo)}
       >
         Editar
       </button>

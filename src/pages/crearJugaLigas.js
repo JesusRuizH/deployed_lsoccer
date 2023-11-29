@@ -12,12 +12,12 @@ export default function Home({user, equipos}) {
                 {
                 equipos.map((feature) => (
                     
-                    <div key={feature.PK_equipo} 
+                    <div key={feature.pk_equipo} 
                     className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                         <div className="flex flex-col justify-start p-6"> 
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                                Nº de Registro de Equipos: {feature.PK_equipo} <br />
+                                Nº de Registro de Equipos: {feature.pk_equipo} <br />
                             </div>
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
@@ -25,7 +25,7 @@ export default function Home({user, equipos}) {
                             </div>
                             <div className="mb-5 text-base text-neutral-600 dark:text-black">
                                 <p>Posicion en la tabla : # {feature.posicion_tabla} </p>  
-                                <p>Liga a la que el equipo pertenece: # {feature.FK_liga} </p>  
+                                <p>Liga a la que el equipo pertenece: # {feature.fk_liga} </p>  
                             </div>
 
                             </div>
@@ -44,7 +44,7 @@ export default function Home({user, equipos}) {
 export const getServerSideProps = withSession(async function ({ req, res }) {
     const user = req.session.get("user");
     if (user === undefined) {
-      res.setHeader("location", "https://deployed-lsoccer.vercel.app/login");
+      res.setHeader("location", "/login");
       res.statusCode = 302;
       res.end();
       return { props: {} };

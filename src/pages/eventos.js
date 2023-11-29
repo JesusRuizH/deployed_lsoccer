@@ -12,7 +12,7 @@ function FirstPage({eventos}) {
 
     if(eventos.length === 0) return <h1 className="teext-center text-2xl font-bold">No hay eventos</h1>
     return eventos.map((eve) => (
-      <EventosCard eve={eve} key={eve.PK_eventos} />
+      <EventosCard eve={eve} key={eve.pk_eventos} />
     ));
   }
 

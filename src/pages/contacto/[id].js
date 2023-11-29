@@ -18,13 +18,13 @@ function ContactoPage({ conta }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{conta.PK_contacto_emergencia}</h1> 
+      <h1>{conta.pk_contacto_emergencia}</h1> 
       <h1>{conta.nombre_contacto}</h1> 
       <h1>{conta.cel_contacto}</h1> 
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(conta.PK_contacto_emergencia)}
+        onClick={() => handleDelete(conta.pk_contacto_emergencia)}
       >
 
         Eliminar
@@ -32,7 +32,7 @@ function ContactoPage({ conta }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/contacto/edit/"+conta.PK_contacto_emergencia)}
+        onClick={() => router.push("/contacto/edit/"+conta.pk_contacto_emergencia)}
       >
         Editar
       </button>

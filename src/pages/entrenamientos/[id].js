@@ -18,13 +18,13 @@ function EntrenamientosPage({ entr }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>{entr.PK_entrenamientos}</h1> 
-      <h1>{entr.FK_categoria}</h1> 
+      <h1>{entr.pk_entrenamientos}</h1> 
+      <h1>{entr.fk_categoria}</h1> 
       <h1>{entr.horarios_entrena_ini}</h1> 
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(entr.PK_entrenamientos)}
+        onClick={() => handleDelete(entr.pk_entrenamientos)}
       >
 
         Eliminar
@@ -32,7 +32,7 @@ function EntrenamientosPage({ entr }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/entrenamientos/edit/"+entr.PK_entrenamientos)}
+        onClick={() => router.push("/entrenamientos/edit/"+entr.pk_entrenamientos)}
       >
         Editar
       </button>

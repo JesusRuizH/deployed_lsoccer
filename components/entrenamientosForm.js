@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function EntrenamientosForm() {
 
     const [entr, setEntrenamientos] = useState({
-        FK_categoria: 0,dias_entrenamiento: "",horarios_entrena_ini: "", horarios_entrena_fin: "",
+      fk_categoria: 0,dias_entrenamiento: "",horarios_entrena_ini: "", horarios_entrena_fin: "",
     })
     const router = useRouter()
     
@@ -53,17 +53,17 @@ export function EntrenamientosForm() {
           
           <div className="mb-4">
           <label
-            htmlFor="FK_categoria"
+            htmlFor="fk_categoria"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_categoria:
+            fk_categoria:
           </label>
           <input
             type="text"
-            name="FK_categoria"
+            name="fk_categoria"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={entr.FK_categoria}
+            value={entr.fk_categoria}
           />
           </div>
 

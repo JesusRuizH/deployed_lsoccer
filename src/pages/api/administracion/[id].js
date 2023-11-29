@@ -14,35 +14,39 @@ export default async function handler(req, res){
     }
     
 }
-
 const getAdministracion = async (req, res) => {
+    
     try {
         const {id} = req.query
-        const [result] = await pool.query("SELECT * FROM administracion WHERE FK_usuario = ?", [id])
-        return res.status(200).json(result[0])
+        const client = await pool.connect();
+        const result = await client.query("SELECT * FROM administracion WHERE fk_usuario = $1;", [id])
+        const administracion = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(administracion[0]);
     } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+        return res.status(500).json({ error: error.message });
+    } 
 }
 
 const deleteAdministracion = async (req, res) => {
     try {
-        const {id} = req.query
-        await pool.query('delete from administracion where FK_usuario = ?', [id]) 
-        return res.status(204).json()
+        const { id } = req.query;
+        const client = await pool.connect();
+        await client.query('DELETE FROM administracion WHERE fk_usuario = $1', [id]);
+        return res.status(204).json();
     } catch (error) {
-        return res.status(500).json({message: error.message})
+        return res.status(500).json({ error: error.message });
     }
 }
 
 const updateAdministracion = async (req, res) => {
-    const {id} = req.query
-    const {FK_usuario, NSS,} = req.body
-    try {
-        await pool.query('UPDATE administracion SET FK_usuario = ? , NSS = ? WHERE FK_usuario = ?' , [FK_usuario, NSS, id]);
-        return res.status(204).json()
-    } catch (error) {
-        return res.status(500).json({message: error.message})
+    const { id } = req.query;
+    const {fk_usuario, nss} = req.body
+    try{
+        const client = await pool.connect();
+        await client.query('UPDATE administracion SET fk_usuario = $1, nss = $2 WHERE fk_usuario = $3;', [fk_usuario, nss, id]);
+        return res.status(204).json();
+    }catch (error) {
+        return res.status(500).json({ error: error.message });
     }
-
+    
 }

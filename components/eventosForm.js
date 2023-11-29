@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function EventosForm() {
 
     const [eve, setEventos] = useState({
-        FK_categoria: 0, descripcion_evento: "",fecha_evento: "",ubicacion_evento: "", hora_ini:0, hora_fin:0, nombre_eve: "",
+        fk_categoria: 0, descripcion_evento: "",fecha_evento: "",ubicacion_evento: "", hora_ini:0, hora_fin:0, nombre_eve: "",
     })
     const router = useRouter()
     
@@ -70,17 +70,17 @@ export function EventosForm() {
 
           <div className="mb-4">
           <label
-            htmlFor="FK_categoria"
+            htmlFor="fk_categoria"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_categoria:
+            fk_categoria:
           </label>
           <input
             type="text"
-            name="FK_categoria"
+            name="fk_categoria"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={eve.FK_categoria}
+            value={eve.fk_categoria}
           />
           </div>
 

@@ -17,13 +17,16 @@ const databaseServiceFactory = () => {
     //const TABLE = 'usuario';
 
     const getUser = async (username) => {
-        const user = await pool.query('SELECT * FROM usuario WHERE usuario = ?', username)
+        const client = await pool.connect();
+        //console.log(username)
+        const userInfo = await client.query(`SELECT * FROM usuario WHERE usuario = '${username}'`)
         //const user = await knex(TABLE).select().where('usuario', username);
+        const user = userInfo.rows;
         if (user.length === 0) {
             throw new Error("User not found");
         } 
         //console.log(user[0])
-        return user[0][0];
+        return user[0];
     };
 
     const createUser = async (username, hashedPassword) => {
@@ -31,54 +34,61 @@ const databaseServiceFactory = () => {
         await knex('usuario').insert({usuario: `${username}`,pw: `${hashedPassword}`});
     };
 
-    const getAlumno = async (PK_usuario) => {
-        const user = await pool.query('SELECT * FROM alumno WHERE FK_usuario = ?', PK_usuario)
+    const getAlumno = async (pk_usuario) => {
+        const client = await pool.connect();
+        const userInfo = await client.query('SELECT * FROM alumno WHERE fk_usuario = $1', [pk_usuario])
         //const user = await knex(TABLE).select().where('usuario', username);
+        const user = userInfo.rows;
         if (user.length === 0) {
             throw new Error("User not found");
         } 
         //console.log(user[0])
-        return user[0][0];
+        return user[0];
     };
 
-    const getAdministrador = async (PK_usuario) => {
-        const user = await pool.query('SELECT * FROM administracion WHERE FK_usuario = ?', PK_usuario)
-        //const user = await knex(TABLE).select().where('usuario', username);
+    const getAdministrador = async (pk_usuario) => {
+        const client = await pool.connect();
+        const userInfo = await client.query('SELECT * FROM administracion WHERE fk_usuario = $1', [pk_usuario])
+        const user = userInfo.rows;
         if (user.length === 0) {
             throw new Error("User not found");
         } 
         //console.log(user[0])
-        return user[0][0];
+        return user[0];
     };
 
-    const getProfesor = async (PK_usuario) => {
-        const user = await pool.query('SELECT * FROM profesor WHERE FK_usuario = ?', PK_usuario)
-        //const user = await knex(TABLE).select().where('usuario', username);
+    const getProfesor = async (pk_usuario) => {
+        const client = await pool.connect();
+        const userInfo = await client.query('SELECT * FROM profesor WHERE fk_usuario = $1', [pk_usuario])
+        const user = userInfo.rows;
         if (user.length === 0) {
             throw new Error("User not found");
         } 
         //console.log(user[0])
-        return user[0][0];
+        return user[0];
     };
 
-    const getDirector = async (PK_usuario) => {
-        const user = await pool.query('SELECT * FROM director_deportivo WHERE FK_usuario = ?', PK_usuario)
-        //const user = await knex(TABLE).select().where('usuario', username);
+    const getDirector = async (pk_usuario) => {
+        const client = await pool.connect();
+        const userInfo = await client.query('SELECT * FROM director_deportivo WHERE fk_usuario = $1', [pk_usuario])
+        const user = userInfo.rows;
         if (user.length === 0) {
             throw new Error("User not found");
         } 
         //console.log(user[0])
-        return user[0][0];
+        return user[0];
     };
 
-    const eventos = async (FK_categoria) => {
-        const evento = await pool.query('SELECT * FROM eventos_importantes WHERE FK_categoria = ?', FK_categoria)
+    const eventos = async (fk_categoria) => {
+        const client = await pool.connect();
+        const eventoInfo = await client.query('SELECT * FROM eventos_importantes WHERE fk_categoria = $1', [fk_categoria])
         //const user = await knex(TABLE).select().where('usuario', username);
+        const evento = eventoInfo.rows;
         if (evento.length === 0) {
             throw new Error("No eventos existentes");
         } 
         //console.log(user[0])
-        return evento[0][0];
+        return evento[0];
     };
 
     return {getUser, createUser, getAlumno, getAdministrador, getProfesor, getDirector, eventos};

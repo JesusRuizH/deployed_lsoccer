@@ -14,24 +14,30 @@ export default async function handler(req, res){
 }
 
 //funciones
+
 const getLiga = async (req, res) => {
     try {
-        const [result] = await pool.query("SELECT PK_liga, nombre_liga, DATE_FORMAT(fecha_categoria_ini,'%y-%m-%d') AS fecha_categoria_ini, DATE_FORMAT(fecha_categoria_fin,'%y-%m-%d') AS fecha_categoria_fin FROM liga")
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_liga, nombre_liga, TO_CHAR(fecha_categoria_ini, 'YY-MM-DD') AS fecha_categoria_ini, TO_CHAR(fecha_categoria_fin, 'YY-MM-DD') AS fecha_categoria_fin FROM liga;");
+        const lig = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(lig);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveLiga = async (req, res)=>{
+    const client = await pool.connect();
+    const {nombre_liga, fecha_categoria_ini, fecha_categoria_fin} = req.body
     try {
-        const {nombre_liga, fecha_categoria_ini, fecha_categoria_fin,} = req.body
-
-        const [result] = await pool.query('INSERT INTO liga SET ?', {nombre_liga, fecha_categoria_ini, fecha_categoria_fin})
+        const result = await client.query(
+        'INSERT INTO liga (nombre_liga ,fecha_categoria_ini, fecha_categoria_fin) VALUES ($1, $2, $3)',
+        [nombre_liga, fecha_categoria_ini, fecha_categoria_fin]
+        );
         return res.status(200).json({nombre_liga, fecha_categoria_ini, fecha_categoria_fin, id: result.insertId})
     } catch (error) {
         return res.status(500).json({message: error.message})
     }
+       
 }
-

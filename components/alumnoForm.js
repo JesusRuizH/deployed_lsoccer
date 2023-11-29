@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function AlumnoForm() {
 
     const [alu, setAlumno] = useState({
-        FK_usuario: 0,FK_categoria: 0, posicion_jugador: "", pago_mensual: 0, pago_liga: 0, jersey: "", KEY_cuenta_pago: 0,
+        fk_usuario: 0,fk_categoria: 0, posicion_jugador: "", pago_mensual: 0, pago_liga: 0, jersey: "", key_cuenta_pago: 0,
     })
     const router = useRouter()
     
@@ -53,33 +53,33 @@ export function AlumnoForm() {
           
           <div className="mb-4">
           <label
-            htmlFor="FK_usuario"
+            htmlFor="fk_usuario"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_usuario:
+            fk_usuario:
           </label>
           <input
             type="text"
-            name="FK_usuario"
+            name="fk_usuario"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={alu.FK_usuario}
+            value={alu.fk_usuario}
           />
           </div>
 
           <div className="mb-4">
           <label
-            htmlFor="FK_categoria"
+            htmlFor="fk_categoria"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_categoria:
+            fk_categoria:
           </label>
           <input
             type="text"
-            name="FK_categoria"
+            name="fk_categoria"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={alu.FK_categoria}
+            value={alu.fk_categoria}
           />
           </div>
 
@@ -149,17 +149,17 @@ export function AlumnoForm() {
 
           <div className="mb-4">
           <label
-            htmlFor="KEY_cuenta_pago"
+            htmlFor="key_cuenta_pago"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            KEY_cuenta_pago:
+            key_cuenta_pago:
           </label>
           <input
             type="text"
-            name="KEY_cuenta_pago"
+            name="key_cuenta_pago"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={alu.KEY_cuenta_pago}
+            value={alu.key_cuenta_pago}
           />
           </div>
 

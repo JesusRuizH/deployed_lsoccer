@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 export function EquiposForm() {
 
     const [equi, setEquipos] = useState({
-        nombre_equipo: "",posicion_tabla: 0,
+        nombre_equipo: "",posicion_tabla: 0, fk_liga: 0,
     })
     const router = useRouter()
     
@@ -85,17 +85,17 @@ export function EquiposForm() {
 
           <div className="mb-4">
           <label
-            htmlFor="FK_liga"
+            htmlFor="fk_liga"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            FK_liga:
+            fk_liga:
           </label>
           <input
             type="text"
-            name="FK_liga"
+            name="fk_liga"
             onChange={handleChange}
             className="shadow appearance-none border rounded  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            value={equi.FK_liga}
+            value={equi.fk_liga}
           />
           </div>
 

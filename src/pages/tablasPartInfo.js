@@ -13,15 +13,15 @@ export default function Home({user, tablas}) {
         let i = 0;
         while(i < tablas.length)
         {
-            if(tablas[i].FK_categoria === user.FK_categoria){
+            if(tablas[i].fk_categoria === user.fk_categoria){
                 return(
                     <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16 pt-3">
-                    <div key={tablas[i].PK_tabla_info_partidos} 
+                    <div key={tablas[i].pk_tabla_info_partidos} 
                         className="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg ">       
                         <div className="flex flex-col justify-start p-6"> 
                             <div
                             className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                                Categoria Nº: {tablas[i].FK_categoria} <br />
+                                Categoria Nº: {tablas[i].fk_categoria} <br />
                                 Fecha del partido: {tablas[i].fecha_partido} <br />
                             </div>
                             <div

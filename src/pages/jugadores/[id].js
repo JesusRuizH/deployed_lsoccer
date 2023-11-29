@@ -24,7 +24,7 @@ function JugadoresPage({ juga }) {
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(juga.PK_jugadores)}
+        onClick={() => handleDelete(juga.pk_jugadores)}
       >
 
         Eliminar
@@ -32,7 +32,7 @@ function JugadoresPage({ juga }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/jugadores/edit/"+juga.PK_jugadores)}
+        onClick={() => router.push("/jugadores/edit/"+juga.pk_jugadores)}
       >
         Editar
       </button>

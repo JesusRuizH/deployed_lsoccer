@@ -13,25 +13,34 @@ export default async function handler(req, res){
     
 }
 
+
+
 //funciones
 const getCategoria = async (req, res) => {
     try {
-        const [result] = await pool.query("SELECT PK_categoria, DATE_FORMAT(fecha_categoria_ini,'%Y-%m-%d') AS fecha_categoria_ini, DATE_FORMAT(fecha_categoria_fin,'%Y-%m-%d') AS fecha_categoria_fin, turno FROM categoria")
-        //console.log(result);
-        return res.status(200).json(result)
+        const client = await pool.connect();
+        const result = await client.query("SELECT pk_categoria, TO_CHAR(fecha_categoria_ini, 'YYYY-MM-DD') AS fecha_categoria_ini, TO_CHAR(fecha_categoria_fin, 'YYYY-MM-DD') AS fecha_categoria_fin, turno FROM categoria;");
+        const cate = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
+        return res.status(200).json(cate);
+        
     } catch (error) {
-        return res.status(500).json({error});
-    }
-}
+        return res.status(500).json({ error: error.message });
+    } 
+};
 
 const saveCategoria = async (req, res)=>{
-    try {
-        const {fecha_categoria_ini, fecha_categoria_fin, turno,} = req.body
-
-        const [result] = await pool.query('INSERT INTO categoria SET ?', {fecha_categoria_ini, fecha_categoria_fin, turno})
-        return res.status(200).json({fecha_categoria_ini, fecha_categoria_fin, turno, id: result.insertId})
-    } catch (error) {
-        return res.status(500).json({message: error.message})
-    }
+try {
+    const client = await pool.connect();
+    const {fecha_categoria_ini, fecha_categoria_fin, turno,} = req.body
+    const result = await client.query(
+      'INSERT INTO categoria (fecha_categoria_ini, fecha_categoria_fin, turno) VALUES ($1, $2, $3)',
+      [fecha_categoria_ini, fecha_categoria_fin, turno]
+    );
+    return res.status(200).json({fecha_categoria_ini, fecha_categoria_fin, turno, id: result.insertId}) 
+  } catch (error) {
+    return res.status(500).json({message: error.message})
+  }
 }
+
+
 

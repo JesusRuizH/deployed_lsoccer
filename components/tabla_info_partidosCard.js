@@ -2,11 +2,11 @@ import Link from "next/link"
 
 export function Tabla_info_partidosCard({tabla}) {
   return (
-    <Link legacyBehavior href={`/tabla_info_partidos/${tabla.PK_tabla_info_partidos}`} key={tabla.PK_tabla_info_partidos}>
+    <Link legacyBehavior href={`/tabla_info_partidos/${tabla.pk_tabla_info_partidos}`} key={tabla.pk_tabla_info_partidos}>
     <a>
         <div className="border border-gray-200 shadow-md p-6">
-        <h3><p id="layoutTxt">Folio: </p>{tabla.PK_tabla_info_partidos} </h3>
-        <h3><p id="layoutTxt">Categoria asignada a la tabla: </p>{tabla.FK_categoria} </h3>
+        <h3><p id="layoutTxt">Folio: </p>{tabla.pk_tabla_info_partidos} </h3>
+        <h3><p id="layoutTxt">Categoria asignada a la tabla: </p>{tabla.fk_categoria} </h3>
         <h3><p id="layoutTxt">Fecha del evento: </p>{tabla.fecha_partido} </h3>
         <h3><p id="layoutTxt">Incidentes registrados: </p>{tabla.incidentes} </h3>
         <h3><p id="layoutTxt">Goles a favor: </p>{tabla.goles_favor} </h3>

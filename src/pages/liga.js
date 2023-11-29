@@ -12,7 +12,7 @@ function FirstPage({liga}) {
 
     if(liga.length === 0) return <h1 className="teext-center text-2xl font-bold">No existen ligas por el momento</h1>
     return liga.map((lig) => (
-      <LigaCard lig={lig} key={lig.PK_liga} />
+      <LigaCard lig={lig} key={lig.pk_liga} />
     ));
   }
 

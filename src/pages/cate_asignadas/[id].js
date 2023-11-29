@@ -24,7 +24,7 @@ function Cate_asignadasPage({ c_asig }) {
       
       <button 
         className="bg-red-500 hover:bg-red-700 text-white px-3 py-2 rounded" 
-        onClick={() => handleDelete(c_asig.PK_cate_asignadas)}
+        onClick={() => handleDelete(c_asig.pk_cate_asignadas)}
       >
 
         Eliminar
@@ -32,7 +32,7 @@ function Cate_asignadasPage({ c_asig }) {
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/cate_asignadas/edit/"+c_asig.PK_cate_asignadas)}
+        onClick={() => router.push("/cate_asignadas/edit/"+c_asig.pk_cate_asignadas)}
       >
         Editar
       </button>

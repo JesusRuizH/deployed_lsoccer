@@ -19,13 +19,13 @@ function ReciboPage({ rec }) {
   return (
     <Layout>
       <h1>Numero de recibo# {rec.PK_recibo}</h1> 
-      <h1>Cuenta de pago (Alumno): {rec.KEY_cuenta_pago}</h1> 
+      <h1>Cuenta de pago (Alumno): {rec.key_cuenta_pago}</h1> 
       <h1>Fecha de creacion de nota: {rec.fecha_pago}</h1> 
       <h1>Estado de validacion de nota (0/1){rec.validacion}</h1> 
 
       <button
         className="bg-gray-500 hover:bg-gray-800 ml-2 text-white px-5 py-2 rounded" 
-        onClick={() => router.push("/reciboAlu/edit/"+ rec.PK_recibo)}
+        onClick={() => router.push("/reciboAlu/edit/"+ rec.pk_recibo)}
       >
         Editar
       </button>
