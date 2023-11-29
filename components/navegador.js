@@ -21,35 +21,35 @@ export function Navegador({user}) {
   const navegador = () =>{
     if(user.fk_tipo_cuenta === 1){
       const navigation = [
-        { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
-        { name: 'Pagos', href: 'http://localhost:3000/pagosAlu', current: false },
-        { name: 'Tablas de partidos', href: 'http://localhost:3000/tablasPartInfo', current: false },
-        { name: 'Categoria y Horario', href: 'http://localhost:3000/aluCateInfo', current: false },
+        { name: 'Pagina Principal', href: 'https://deployed-lsoccer.vercel.app/', current: false },
+        { name: 'Pagos', href: 'https://deployed-lsoccer.vercel.app/pagosAlu', current: false },
+        { name: 'Tablas de partidos', href: 'https://deployed-lsoccer.vercel.app/tablasPartInfo', current: false },
+        { name: 'Categoria y Horario', href: 'https://deployed-lsoccer.vercel.app/aluCateInfo', current: false },
       ]
       nav = navigation;
 
     }else if(user.fk_tipo_cuenta === 2){
       const navigation = [
-        { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
-        { name: 'Entrenamientos', href: 'http://localhost:3000/crearEntrena', current: false },
-        { name: 'Ligas', href: 'http://localhost:3000/crearLigas', current: false },
-        { name: 'Equipos de Ligas', href: 'http://localhost:3000/crearEquiLig', current: false },
-        { name: 'Jugadores de Ligas', href: 'http://localhost:3000/crearJugaLigas', current: false },
+        { name: 'Pagina Principal', href: 'https://deployed-lsoccer.vercel.app/', current: false },
+        { name: 'Entrenamientos', href: 'https://deployed-lsoccer.vercel.app/crearEntrena', current: false },
+        { name: 'Ligas', href: 'https://deployed-lsoccer.vercel.app/crearLigas', current: false },
+        { name: 'Equipos de Ligas', href: 'https://deployed-lsoccer.vercel.app/crearEquiLig', current: false },
+        { name: 'Jugadores de Ligas', href: 'https://deployed-lsoccer.vercel.app/crearJugaLigas', current: false },
       ]
       nav = navigation;
     }else if(user.fk_tipo_cuenta === 3){
       const navigation = [
-        { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
-        { name: 'Crear Nota', href: 'http://localhost:3000/crearNota', current: false },
+        { name: 'Pagina Principal', href: 'https://deployed-lsoccer.vercel.app/', current: false },
+        { name: 'Crear Nota', href: 'https://deployed-lsoccer.vercel.app/crearNota', current: false },
       ]
       nav = navigation;
     }else if(user.fk_tipo_cuenta === 4){
       const navigation = [
-        { name: 'Pagina Principal', href: 'http://localhost:3000/', current: false },
-        { name: 'Eventos', href: 'http://localhost:3000/crearEve', current: false },
-        { name: 'Tablas de partidos', href: 'http://localhost:3000/crearTablasPar', current: false },
-        { name: 'Entrenamientos', href: 'http://localhost:3000/entrenaProfes', current: false },
-        { name: 'Categorias Asignadas', href: 'http://localhost:3000/categoriasProfes', current: false },
+        { name: 'Pagina Principal', href: 'https://deployed-lsoccer.vercel.app/', current: false },
+        { name: 'Eventos', href: 'https://deployed-lsoccer.vercel.app/crearEve', current: false },
+        { name: 'Tablas de partidos', href: 'https://deployed-lsoccer.vercel.app/crearTablasPar', current: false },
+        { name: 'Entrenamientos', href: 'https://deployed-lsoccer.vercel.app/entrenaProfes', current: false },
+        { name: 'Categorias Asignadas', href: 'https://deployed-lsoccer.vercel.app/categoriasProfes', current: false },
       ]
       nav = navigation;
     }
@@ -83,7 +83,7 @@ export function Navegador({user}) {
                     <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/crearContactos"
+                            href="https://deployed-lsoccer.vercel.app/crearContactos"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Contactos
@@ -93,7 +93,7 @@ export function Navegador({user}) {
                     <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/crearUsuarios"
+                            href="https://deployed-lsoccer.vercel.app/crearUsuarios"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Usuario
@@ -103,7 +103,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/crearAlumno"
+                            href="https://deployed-lsoccer.vercel.app/crearAlumno"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Alumno
@@ -113,7 +113,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/crearDirector"
+                            href="https://deployed-lsoccer.vercel.app/crearDirector"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Director deportivo
@@ -123,7 +123,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/crearAdmin"
+                            href="https://deployed-lsoccer.vercel.app/crearAdmin"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Administrador
@@ -166,7 +166,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/terminarAlu"
+                            href="https://deployed-lsoccer.vercel.app/terminarAlu"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Alumno
@@ -176,7 +176,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/terminarProf"
+                            href="https://deployed-lsoccer.vercel.app/terminarProf"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Entrenador
@@ -186,7 +186,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/crearCategorias"
+                            href="https://deployed-lsoccer.vercel.app/crearCategorias"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Categorias
@@ -196,7 +196,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/crearTablasCate"
+                            href="https://deployed-lsoccer.vercel.app/crearTablasCate"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Tablas de categorias
@@ -293,7 +293,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/profile"
+                            href="https://deployed-lsoccer.vercel.app/profile"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Tu perfil
@@ -313,7 +313,7 @@ export function Navegador({user}) {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="http://localhost:3000/api/logout"
+                            href="https://deployed-lsoccer.vercel.app/api/logout"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Logout
