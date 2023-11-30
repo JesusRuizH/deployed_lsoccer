@@ -27,32 +27,35 @@ export default function Home({user, catesProf, categorias}) {
         j++;
     }
     
-    const misCates = () =>{
-        for(let x = 0; x < 3; x++){
-            if(cates[x] != undefined){
-                return(
-                    <div>
-                        <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16 pt-3">
-                            <div key={cates[x].pk_categoria} 
-                            className="text-center flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
-                                <div className="flex flex-col justify-start p-6"> 
-                                    <div
-                                    className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                                        Categoria: {cates[x].pk_categoria} <br />
-                                    </div>
-                                    <div className="mb-5 text-base text-neutral-600 dark:text-black">
-                                        <p>Fecha de inicio de categoria: {cates[x].fecha_categoria_ini} </p> 
-                                        <p>Fecha de termino de categoria: {cates[x].fecha_categoria_fin} </p>  
-                                        <p>Turno de la categoria: {cates[x].turno} </p>  
-                                    </div>
-
-                                    </div>
-                            </div>            
-                        </dl>
-                    </div>
-                )
-            }      
-        }
+    const misCates = (cates) =>{
+        return (
+            <>
+        <div>
+            <div className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-3 lg:gap-y-16 pt-3">
+                {
+                cates.map((feature) => (
+                    <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16 pt-3">
+                    <div key={feature.pk_categoria} 
+                    className="text-center flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
+                        <div className="flex flex-col justify-start p-6"> 
+                            <div
+                            className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
+                                Categoria: {feature.pk_categoria} <br />
+                            </div>
+                            <div className="mb-5 text-base text-neutral-600 dark:text-black">
+                                <p>Fecha de inicio de categoria: {feature.fecha_categoria_ini} </p> 
+                                <p>Fecha de termino de categoria: {feature.fecha_categoria_fin} </p>  
+                                <p>Turno de la categoria: {feature.turno} </p>  
+                            </div>
+                        </div>
+                    </div>            
+                </dl>        
+                ))
+                }
+            </div>
+        </div>
+        </>
+        )
     }     
     
     return (
@@ -79,7 +82,7 @@ export default function Home({user, catesProf, categorias}) {
             </dl>
         </div>
         <p className="ml-8 mt-8 mb-2 text-gray-500">Informacion de categorias</p>
-        {misCates()}
+        {misCates(cates)}
         </>
     )
     
