@@ -6,7 +6,7 @@ export default function Home({user, catesProf, categorias}) {
     let i = 0;
     let profe = [];
     while(i < catesProf.length){
-        if(catesProf[i].PK_usuario == user.PK_usuario){
+        if(catesProf[i].pk_usuario == user.pk_usuario){
             profe = catesProf[i];
         }
         i++;
@@ -15,13 +15,13 @@ export default function Home({user, catesProf, categorias}) {
     let j = 0;
     let cates = [];
     while(j < categorias.length){
-        if(categorias[j].PK_categoria == profe.cate_uno){
+        if(categorias[j].pk_categoria == profe.cate_uno){
             cates.push(categorias[j]);
         }
-        if(categorias[j].PK_categoria == profe.cate_dos){
+        if(categorias[j].pk_categoria == profe.cate_dos){
             cates.push(categorias[j]);
         }
-        if(categorias[j].PK_categoria == profe.cate_tres){
+        if(categorias[j].pk_categoria == profe.cate_tres){
             cates.push(categorias[j]);
         }
         j++;
@@ -33,12 +33,12 @@ export default function Home({user, catesProf, categorias}) {
                 return(
                     <div>
                         <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16 pt-3">
-                            <div key={cates[x].PK_categoria} 
+                            <div key={cates[x].pk_categoria} 
                             className="text-center flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                                 <div className="flex flex-col justify-start p-6"> 
                                     <div
                                     className="mb-8 text-xl font-medium text-neutral-800 dark:text-black">
-                                        Categoria: {cates[x].PK_categoria} <br />
+                                        Categoria: {cates[x].pk_categoria} <br />
                                     </div>
                                     <div className="mb-5 text-base text-neutral-600 dark:text-black">
                                         <p>Fecha de inicio de categoria: {cates[x].fecha_categoria_ini} </p> 
@@ -66,7 +66,7 @@ export default function Home({user, catesProf, categorias}) {
         <p className="ml-8 mt-8 mb-2 text-gray-500">Mis Categorias</p>
         <div>
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-1 lg:gap-y-16 pt-3">
-                    <div key={profe.PK_usuario} 
+                    <div key={profe.pk_usuario} 
                     className="text-center flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] white:bg-neutral-700 lg">       
                         <div className="flex flex-col justify-start p-6"> 
                             <div
