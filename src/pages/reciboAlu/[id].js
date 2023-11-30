@@ -18,7 +18,7 @@ function ReciboPage({ rec }) {
   //when I press the button comes here
   return (
     <Layout>
-      <h1>Numero de recibo# {rec.PK_recibo}</h1> 
+      <h1>Numero de recibo# {rec.pk_recibo}</h1> 
       <h1>Cuenta de pago (Alumno): {rec.key_cuenta_pago}</h1> 
       <h1>Fecha de creacion de nota: {rec.fecha_pago}</h1> 
       <h1>Estado de validacion de nota (0/1){rec.validacion}</h1> 

@@ -83,7 +83,7 @@ export default function Home({user, catesProf, categorias}) {
                     </div>            
             </dl>
         </div>
-        <p className="ml-8 mt-8 mb-2 text-gray-500">Informacion de categorias</p>
+        <p className="ml-8 mt-8 mb-2 text-gray-500">Informacion de entrenamientos</p>
         {misCates()}
         </>
     )

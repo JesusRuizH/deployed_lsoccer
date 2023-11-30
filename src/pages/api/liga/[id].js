@@ -20,7 +20,7 @@ const getLiga = async (req, res) => {
     try {
         const {id} = req.query
         const client = await pool.connect();
-        const result = await client.query("SELECT pk_liga, nombre_liga, TO_CHAR(fecha_categoria_ini, 'YY-MM-DD') AS fecha_categoria_ini, TO_CHAR(fecha_categoria_fin, 'YY-MM-DD') AS fecha_categoria_fin FROM liga WHERE pk_liga = $1", [id])
+        const result = await client.query("SELECT pk_liga, nombre_liga, TO_CHAR(fecha_categoria_ini, 'YYYY-MM-DD') AS fecha_categoria_ini, TO_CHAR(fecha_categoria_fin, 'YYYY-MM-DD') AS fecha_categoria_fin FROM liga WHERE pk_liga = $1", [id])
         const lig = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
         return res.status(200).json(lig[0]);
     } catch (error) {

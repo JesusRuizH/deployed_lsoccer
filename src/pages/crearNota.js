@@ -7,6 +7,7 @@ export default function Home({user, alumno}) {
         <>
         <Navegador user={user}/>
         <div>
+            <p className="ml-8 mt-8 mb-2 text-gray-500">Nombre de los alumnos</p>
             <dl className="grid max-w-xl grid-cols-2 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16 pt-3">
                 {
                 alumno.map((feature) => (

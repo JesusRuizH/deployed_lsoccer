@@ -17,7 +17,7 @@ export default async function handler(req, res){
 const getTabla_info_partidos = async (req, res) => {
     try {
         const client = await pool.connect();
-        const result = await client.query("SELECT pk_tabla_info_partidos, fk_categoria, TO_CHAR(fecha_partido, 'YY-MM-DD') AS fecha_partido, incidentes, goles_favor, goles_contra, num_tarjetas_rojas, num_tarjetas_amarillas, resultado, datos_extra, nombre_encargado FROM tabla_info_partidos;");
+        const result = await client.query("SELECT pk_tabla_info_partidos, fk_categoria, TO_CHAR(fecha_partido, 'YYYY-MM-DD') AS fecha_partido, incidentes, goles_favor, goles_contra, num_tarjetas_rojas, num_tarjetas_amarillas, resultado, datos_extra, nombre_encargado FROM tabla_info_partidos;");
         const tabla = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
         return res.status(200).json(tabla);
         

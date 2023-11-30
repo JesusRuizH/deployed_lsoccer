@@ -21,7 +21,7 @@ const getUsuario = async (req, res) => {
     try {
         const {id} = req.query
         const client = await pool.connect();
-        const result = await client.query("SELECT pk_usuario, nombre_usuario, apellidos_usuario, TO_CHAR(fecha_naci_usuario, 'YY-MM-DD') AS fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario, LEFT(pw , 10) AS pw, correo, estado FROM usuario WHERE pk_usuario = $1", [id])
+        const result = await client.query("SELECT pk_usuario, nombre_usuario, apellidos_usuario, TO_CHAR(fecha_naci_usuario, 'YYYY-MM-DD') AS fecha_naci_usuario, celular_usuario, FK_contacto_emergencia, FK_tipo_cuenta, usuario, LEFT(pw , 10) AS pw, correo, estado FROM usuario WHERE pk_usuario = $1", [id])
         const usu = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
         return res.status(200).json(usu[0]);
     } catch (error) {

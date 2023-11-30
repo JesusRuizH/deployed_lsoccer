@@ -20,7 +20,7 @@ const getRecibo = async (req, res) => {
     try {
         const {id} = req.query
         const client = await pool.connect();
-        const result = await client.query("SELECT pk_recibo, key_cuenta_pago, monto_pagado, imagen_pago, TO_CHAR(fecha_pago, 'YY-MM-DD') AS fecha_pago, observaciones, validacion FROM recibo WHERE pk_recibo = $1", [id])
+        const result = await client.query("SELECT pk_recibo, key_cuenta_pago, monto_pagado, imagen_pago, TO_CHAR(fecha_pago, 'YYYY-MM-DD') AS fecha_pago, observaciones, validacion FROM recibo WHERE pk_recibo = $1", [id])
         const rec = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
         return res.status(200).json(rec[0]);
     } catch (error) {

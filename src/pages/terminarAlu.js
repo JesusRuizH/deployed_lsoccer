@@ -63,7 +63,7 @@ export default function Home({user, alumno, cate}) {
                 }
             </dl>
         </div>
-        <p className="ml-8 mt-8 mb-2 text-gray-500">Crear Alumno</p>
+        <p className="ml-8 mt-8 mb-2 text-gray-500">Finalizar cuenta de Alumno</p>
         <iframe className="w-full aspect-[4/3]" src="https://deployed-lsoccer.vercel.app/alumno"></iframe>
         </>
     )

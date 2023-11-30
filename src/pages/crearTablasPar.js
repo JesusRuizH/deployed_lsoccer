@@ -35,7 +35,7 @@ export default function Home({user, cates}) {
                     </div>            
             </dl>
         </div>
-        <p className="ml-8 mt-8 mb-2 text-gray-500">Crear Eventos</p>
+        <p className="ml-8 mt-8 mb-2 text-gray-500">Crear tablas de partidos</p>
         <iframe className="w-full aspect-[5/3]" src="https://deployed-lsoccer.vercel.app/tabla_info_partidos"></iframe>
         </>
     )

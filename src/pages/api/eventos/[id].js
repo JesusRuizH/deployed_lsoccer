@@ -19,7 +19,7 @@ const getEventos = async (req, res) => {
     try {
         const {id} = req.query
         const client = await pool.connect();
-        const result = await client.query("SELECT pk_eventos, fk_categoria, descripcion_evento, TO_CHAR(fecha_evento, 'YY-MM-DD') AS fecha_evento, ubicacion_evento FROM eventos_importantes WHERE pk_eventos = $1", [id])
+        const result = await client.query("SELECT pk_eventos, fk_categoria, descripcion_evento, TO_CHAR(fecha_evento, 'YYYY-MM-DD') AS fecha_evento, ubicacion_evento FROM eventos_importantes WHERE pk_eventos = $1", [id])
         const eve = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
         return res.status(200).json(eve[0]);
     } catch (error) {
