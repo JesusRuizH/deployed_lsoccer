@@ -354,7 +354,7 @@ export default function Home({user, eventos, usuario_a, usuario_ad, usuario_d, u
         <div className="flex justify-center my-20">
           <HierarchicalBarChart data={pagos_} width={500} height={300} /> 
         </div>
-        <h1 className="flex justify-center">Categorias y direcciones de eventos</h1> <br></br>
+        <h1 className="flex justify-center">Cuentas de pago y sus respectivas validaciones</h1> <br></br>
         
 
         </>
