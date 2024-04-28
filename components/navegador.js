@@ -41,6 +41,7 @@ export function Navegador({user}) {
       const navigation = [
         { name: 'Pagina Principal', href: 'https://deployed-lsoccer.vercel.app/', current: false },
         { name: 'Crear Nota', href: 'https://deployed-lsoccer.vercel.app/crearNota', current: false },
+        { name: 'Analisis Estadistico', href: 'https://deployed-lsoccer.vercel.app/analisis', current: false },
       ]
       nav = navigation;
     }else if(user.fk_tipo_cuenta === 4){
