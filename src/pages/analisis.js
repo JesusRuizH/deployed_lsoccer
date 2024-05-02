@@ -282,7 +282,7 @@ const data = {
     ]
   };
 
-export default function Home({user, eventos, usuario_a, usuario_ad, usuario_d, usuario_p, edades_alumnos, tarjetas_a, tarjetas_r, direccion, pagos}) {
+export default function Home({user, usuario_a, usuario_ad, usuario_d, usuario_p, edades_alumnos, tarjetas_a, tarjetas_r, direccion, pagos}) {
   //console.log(direccion)  
    
   //console.log(tarjetas_a)  
@@ -296,7 +296,7 @@ export default function Home({user, eventos, usuario_a, usuario_ad, usuario_d, u
 
     let nacimiento_alumno = []
     let j = 0;
-    while(j < eventos.length){ 
+    while(j < edades_alumnos.length){ 
         nacimiento_alumno.push(Number(edades_alumnos[j].fecha_naci_usuario));
         j++;
     }
@@ -309,21 +309,9 @@ export default function Home({user, eventos, usuario_a, usuario_ad, usuario_d, u
 
     //console.log(usuarios)
 
-    let goles = []
-    let i = 0;
-    while(i < eventos.length){ 
-        goles.push(eventos[i].goles_favor);
-        i++;
-    }
-    //console.log(goles)
-
     return (
         <>
         <Navegador user={user}/>
-        <div className="flex justify-center my-20">
-            <BarChart data={goles} names={names_cate} width={400} height={300}/>
-        </div> 
-        <h1 className="flex justify-center">Cantidad de goles por partidos</h1>  
 
         <div className="flex justify-center my-20">
             <BarChart data={usuarios} names={names_tipo} width={400} height={300}/>
@@ -370,9 +358,6 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
       res.end();
       return { props: {} };
     }
-    const {data: eventos} = await axios.get(
-        "https://deployed-lsoccer.vercel.app/api/graficas/eventos"
-        );
 
     const {data: usuario_a} = await axios.get(
         "https://deployed-lsoccer.vercel.app/api/graficas/usuario_a"
@@ -408,7 +393,7 @@ export const getServerSideProps = withSession(async function ({ req, res }) {
         
 
     return {
-      props: { eventos,
+      props: {
         usuario_a,
         usuario_ad,
         usuario_d,

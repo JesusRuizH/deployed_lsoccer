@@ -15,7 +15,7 @@ export default async function handler(req, res){
 const getData = async (req, res) => {
     try {
         const client = await pool.connect();
-        const result = await client.query("SELECT * FROM tabla_info_partidos INNER JOIN categoria ON tabla_info_partidos.fk_categoria = categoria.pk_categoria;");
+        const result = await client.query("SELECT goles_favor FROM tabla_info_partidos;");
         const adm = result.rows;  // Accede a la propiedad 'rows' para obtener los resultados
         return res.status(200).json(adm);
         
